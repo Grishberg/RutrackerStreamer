@@ -9,6 +9,7 @@ import java.io.Serializable;
  */
 public class MediaContainer implements Serializable{
 	private String torrentUrl;
+	private String torrenBody;
 	private String torrentName;
 	private String imageUrl;
 
@@ -31,4 +32,11 @@ public class MediaContainer implements Serializable{
 		return imageUrl;
 	}
 
+	public String getTorrenBody() {
+		return torrenBody;
+	}
+
+	public void setTorrenBody(String torrenBody) {
+		this.torrenBody = torrenBody;
+	}
 }

@@ -238,7 +238,7 @@ public class TorrentService extends Service {
         });
     }
 
-    public void streamTorrent(@NonNull final String torrentUrl) {
+    public void streamTorrent(@NonNull final String torrentBody) {
         Timber.d("streamTorrent");
 
         //attempt to initialize service
@@ -267,18 +267,21 @@ public class TorrentService extends Service {
             public void run() {
                 Timber.d("streaming runnable");
                 mIsStreaming = true;
-                mCurrentTorrentUrl = torrentUrl;
+                mCurrentTorrentUrl = torrentBody;
 
                 File saveDirectory = new File(PopcornApplication.getStreamDir());
                 saveDirectory.mkdirs();
 
-                TorrentInfo torrentInfo = getTorrentInfo(torrentUrl);
+                //TorrentInfo torrentInfo = getTorrentInfo(torrentUrl);
+				//
+				TorrentInfo torrentInfo = getTorrentInfoFromTorrent(torrentBody);
+
                 Priority[] priorities = new Priority[torrentInfo.getNumPieces()];
                 for(int i = 0; i < priorities.length; i++) {
                     priorities[i] = Priority.NORMAL;
                 }
 
-                if (!mCurrentTorrentUrl.equals(torrentUrl) || mIsCanceled) {
+                if (!mCurrentTorrentUrl.equals(torrentBody) || mIsCanceled) {
                     return;
                 }
 
@@ -367,6 +370,15 @@ public class TorrentService extends Service {
                 e.printStackTrace();
             }
         }
+        return null;
+    }
+
+    private TorrentInfo getTorrentInfoFromTorrent(String torrentBody) {
+		try {
+			return TorrentInfo.bdecode(torrentBody.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
         return null;
     }
 

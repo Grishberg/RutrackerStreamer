@@ -43,7 +43,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name="com.rest.rutracker.rutrackerrestclient.ui.activities.DetailActivity"
+            android:label="Обзор видео"
+            android:parentActivityName="com.rest.rutracker.rutrackerrestclient.ui.activities.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rest.rutracker.rutrackerrestclient.ui.activities.MainActivity" />
+        </activity>
 
 		<activity
 			android:name=".activities.MediaDetailActivity"
