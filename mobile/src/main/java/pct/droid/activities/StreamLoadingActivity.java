@@ -18,6 +18,7 @@
 package pct.droid.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -47,30 +48,30 @@ public class StreamLoadingActivity extends PopcornBaseActivity implements Stream
     private StreamInfo mInfo;
     private StreamLoadingFragment mFragment;
 
-    public static Intent startActivity(Activity activity, MediaContainer info) {
-        Intent i = new Intent(activity, StreamLoadingActivity.class);
+    public static Intent startActivity(Context context, MediaContainer info) {
+        Intent i = new Intent(context, StreamLoadingActivity.class);
         i.putExtra(EXTRA_MEDIA_CODEC, info);
-        activity.startActivity(i);
+		context.startActivity(i);
         return i;
     }
 
-    public static Intent startActivity(Activity activity, StreamInfo info) {
-        Intent i = new Intent(activity, StreamLoadingActivity.class);
+    public static Intent startActivity(Context context, StreamInfo info) {
+        Intent i = new Intent(context, StreamLoadingActivity.class);
         i.putExtra(EXTRA_INFO, info);
-        activity.startActivity(i);
+		context.startActivity(i);
         return i;
     }
-
-    public static Intent startActivity(Activity activity, StreamInfo info, Pair<View, String>... elements) {
-        Intent i = new Intent(activity, StreamLoadingActivity.class);
+/*
+    public static Intent startActivity(Context context, StreamInfo info, Pair<View, String>... elements) {
+        Intent i = new Intent(context, StreamLoadingActivity.class);
         i.putExtra(EXTRA_INFO, info);
 
         ActivityOptionsCompat options =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(activity, elements);
-        ActivityCompat.startActivity(activity, i, options.toBundle());
+                ActivityOptionsCompat.makeSceneTransitionAnimation(context, elements);
+        ActivityCompat.startActivity(context, i, options.toBundle());
         return i;
     }
-
+*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -95,7 +96,7 @@ public class StreamLoadingActivity extends PopcornBaseActivity implements Stream
 			media.year = "2011";
 			mInfo = new StreamInfo(media,mediaContainer.getTorrentUrl()
 					, "no-subs"
-					, mediaContainer.getHeight()
+					, ""
 			);
 		}
 

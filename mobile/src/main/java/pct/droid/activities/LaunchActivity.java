@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.crashlytics.android.Crashlytics;
+import com.rest.rutracker.rutrackerrestclient.ui.activities.MainActivity;
 
 import io.fabric.sdk.android.Fabric;
 import pct.droid.base.torrent.TorrentService;

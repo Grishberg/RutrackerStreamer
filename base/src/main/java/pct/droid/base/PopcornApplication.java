@@ -48,6 +48,12 @@ public class PopcornApplication extends VLCApplication {
     private static OkHttpClient sHttpClient;
     private static String sDefSystemLanguage;
 
+    private static Context appContext;
+
+    public static Context getAppContext() {
+        return appContext;
+    }
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -57,6 +63,8 @@ public class PopcornApplication extends VLCApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        appContext = getApplicationContext();
+
         sDefSystemLanguage = LocaleUtils.getCurrentAsString();
 
         Foreground.init(this);

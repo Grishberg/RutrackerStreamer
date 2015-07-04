@@ -174,10 +174,11 @@ public class MediaDetailActivity extends PopcornBaseActivity implements BaseDeta
             if(mService != null) {
                 mService.startForeground();
             }
-			MediaContainer mediaContainer	= new MediaContainer("http://zerkalo-rutor.org/download/442296"
-					, "Дом 2015", "http://s017.radikal.ru/i425/1507/31/da69283fba34.png", "390");
 
-			StreamLoadingActivity.startActivity(this, mediaContainer);
+			//MediaContainer mediaContainer	= new MediaContainer("http://zerkalo-rutor.org/download/442296"
+			//		, "Дом 2015", "http://s017.radikal.ru/i425/1507/31/da69283fba34.png", "390");
+
+			//StreamLoadingActivity.startActivity(this, mediaContainer);
 //			StreamLoadingActivity.startActivity(this, streamInfo);
 /*
             if (VersionUtils.isLollipop()) {

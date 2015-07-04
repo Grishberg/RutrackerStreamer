@@ -17,9 +17,9 @@
   -->
 
 <resources>
-
+<!--         <attr name="insetForeground" format="reference|color" /> -->
     <declare-styleable name="ScrimInsetsView">
-        <attr name="insetForeground" format="reference|color" />
+        <attr name="insetForegroundS" format="reference|color" />
     </declare-styleable>
 
     <declare-styleable name="OptionSelector">

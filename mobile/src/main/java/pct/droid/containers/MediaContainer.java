@@ -11,13 +11,11 @@ public class MediaContainer implements Serializable{
 	private String torrentUrl;
 	private String torrentName;
 	private String imageUrl;
-	private String height;
 
-	public MediaContainer(String torrentUrl, String torrentName, String imageUrl, String height) {
+	public MediaContainer(String torrentUrl, String torrentName, String imageUrl) {
 		this.torrentUrl = torrentUrl;
 		this.torrentName = torrentName;
 		this.imageUrl = imageUrl;
-		this.height		= height;
 	}
 
 
@@ -33,7 +31,4 @@ public class MediaContainer implements Serializable{
 		return imageUrl;
 	}
 
-	public String getHeight() {
-		return height;
-	}
 }
