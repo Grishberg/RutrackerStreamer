@@ -26,16 +26,33 @@ import android.support.v4.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.squareup.okhttp.Call;
+
+import org.videolan.libvlc.Media;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import pct.droid.R;
+import pct.droid.base.providers.media.MediaProvider;
 import pct.droid.base.torrent.StreamInfo;
+import pct.droid.containers.MediaContainer;
 import pct.droid.fragments.StreamLoadingFragment;
 
 public class StreamLoadingActivity extends PopcornBaseActivity implements StreamLoadingFragment.FragmentListener {
 
     public final static String EXTRA_INFO = "mInfo";
+    public final static String EXTRA_MEDIA_CODEC = "mMediaCodec";
 
     private StreamInfo mInfo;
     private StreamLoadingFragment mFragment;
+
+    public static Intent startActivity(Activity activity, MediaContainer info) {
+        Intent i = new Intent(activity, StreamLoadingActivity.class);
+        i.putExtra(EXTRA_MEDIA_CODEC, info);
+        activity.startActivity(i);
+        return i;
+    }
 
     public static Intent startActivity(Activity activity, StreamInfo info) {
         Intent i = new Intent(activity, StreamLoadingActivity.class);
@@ -62,11 +79,28 @@ public class StreamLoadingActivity extends PopcornBaseActivity implements Stream
         super.onCreate(savedInstanceState, R.layout.activity_streamloading);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        if (!getIntent().hasExtra(EXTRA_INFO)) finish();
+        if (!getIntent().hasExtra(EXTRA_INFO) && !getIntent().hasExtra(EXTRA_MEDIA_CODEC)) finish();
 
-        mInfo = getIntent().getParcelableExtra(EXTRA_INFO);
+        MediaContainer mediaContainer	= (MediaContainer) getIntent().getSerializableExtra(EXTRA_MEDIA_CODEC);
+		mInfo = getIntent().getParcelableExtra(EXTRA_INFO);
 
-        mFragment = (StreamLoadingFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
+        pct.droid.base.providers.media.models.Media media =
+                new pct.droid.base.providers.media.models.Media(null,null);
+		media.isMovie	= true;
+		if(mediaContainer != null){
+			media.fullImage = mediaContainer.getImageUrl();
+			media.image = mediaContainer.getImageUrl();
+			media.headerImage = mediaContainer.getImageUrl();
+			media.title = mediaContainer.getTorrentName();
+			media.year = "2011";
+			mInfo = new StreamInfo(media,mediaContainer.getTorrentUrl()
+					, "no-subs"
+					, mediaContainer.getHeight()
+			);
+		}
+
+
+		mFragment = (StreamLoadingFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
     }
 
     @Override

@@ -53,6 +53,7 @@ import pct.droid.base.torrent.StreamInfo;
 import pct.droid.base.utils.PrefUtils;
 import pct.droid.base.vpn.VPNManager;
 import pct.droid.base.youtube.YouTubeData;
+import pct.droid.containers.MediaContainer;
 import pct.droid.fragments.MediaContainerFragment;
 import pct.droid.fragments.NavigationDrawerFragment;
 import pct.droid.utils.ToolbarUtils;
@@ -89,8 +90,12 @@ public class MainActivity extends PopcornBaseActivity implements NavigationDrawe
 
         mNavigationDrawerFragment.initialise(mNavigationDrawerContainer, drawerLayout);
 
+        MediaContainer mediaContainer	= new MediaContainer("http://zerkalo-rutor.org/download/442296"
+                , "Дом 2015", "http://s017.radikal.ru/i425/1507/31/da69283fba34.png", "");
 
-		/* view a magnet link directly */
+        StreamLoadingActivity.startActivity(this, mediaContainer);
+        finish();
+
         String action = getIntent().getAction();
         Uri data = getIntent().getData();
         if (action != null && action.equals(Intent.ACTION_VIEW) && data != null) {
@@ -107,7 +112,8 @@ public class MainActivity extends PopcornBaseActivity implements NavigationDrawe
         if (null != savedInstanceState) return;
         int providerId = PrefUtils.get(this, Prefs.DEFAULT_VIEW, 0);
         mNavigationDrawerFragment.selectItem(providerId);
-    }
+
+	}
 
     @Override
     protected void onResume() {

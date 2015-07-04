@@ -33,6 +33,7 @@ import pct.droid.base.utils.NetworkUtils;
 import pct.droid.base.utils.PixelUtils;
 import pct.droid.base.utils.PrefUtils;
 import pct.droid.base.utils.VersionUtils;
+import pct.droid.containers.MediaContainer;
 import pct.droid.dialogfragments.MessageDialogFragment;
 import pct.droid.fragments.BaseDetailFragment;
 import pct.droid.fragments.MovieDetailFragment;
@@ -173,13 +174,19 @@ public class MediaDetailActivity extends PopcornBaseActivity implements BaseDeta
             if(mService != null) {
                 mService.startForeground();
             }
+			MediaContainer mediaContainer	= new MediaContainer("http://zerkalo-rutor.org/download/442296"
+					, "Дом 2015", "http://s017.radikal.ru/i425/1507/31/da69283fba34.png", "390");
 
+			StreamLoadingActivity.startActivity(this, mediaContainer);
+//			StreamLoadingActivity.startActivity(this, streamInfo);
+/*
             if (VersionUtils.isLollipop()) {
                 mScrollView.smoothScrollTo(0, 0);
                 StreamLoadingActivity.startActivity(this, streamInfo, Pair.create((View) mBgImage, mBgImage.getTransitionName()));
             } else {
                 StreamLoadingActivity.startActivity(this, streamInfo);
             }
+*/
         }
     }
 
