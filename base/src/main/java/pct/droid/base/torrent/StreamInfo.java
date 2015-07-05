@@ -39,6 +39,7 @@ public class StreamInfo implements Parcelable {
     private String mSubtitleLanguage;
     private String mQuality;
     private String mTorrentUrl;
+    private byte[] mTorrentBody;
     private String mVideoLocation;
     private String mTitle;
     private String mImageUrl;
@@ -55,7 +56,12 @@ public class StreamInfo implements Parcelable {
         this(media, null, torrentUrl, subtitleLanguage, quality);
     }
 
-    public StreamInfo(Media media, Show show, String torrentUrl, String subtitleLanguage, String quality) {
+	public StreamInfo(Media media, String torrentUrl, byte[] torrentBody, String subtitleLanguage, String quality) {
+		this(media, null, torrentUrl, subtitleLanguage, quality);
+		this.mTorrentBody	= torrentBody;
+	}
+
+	public StreamInfo(Media media, Show show, String torrentUrl, String subtitleLanguage, String quality) {
         this(media, show, torrentUrl, subtitleLanguage, quality, null);
     }
 
@@ -85,7 +91,11 @@ public class StreamInfo implements Parcelable {
         }
     }
 
-    public boolean isShow() {
+	public byte[] getTorrentBody() {
+		return mTorrentBody;
+	}
+
+	public boolean isShow() {
         return mIsShow;
     }
 
@@ -149,6 +159,8 @@ public class StreamInfo implements Parcelable {
         dest.writeInt(this.mIsShow ? 1 : 0);
         dest.writeInt(this.mColor);
         dest.writeParcelable(this.mMedia, 0);
+		dest.writeInt(mTorrentBody == null ? 0: mTorrentBody.length);
+		dest.writeByteArray(this.mTorrentBody);
     }
 
     private StreamInfo(Parcel in) {
@@ -161,6 +173,11 @@ public class StreamInfo implements Parcelable {
         this.mIsShow = in.readInt() == 1;
         this.mColor = in.readInt();
         this.mMedia = in.readParcelable(Media.class.getClassLoader());
+		int length	= in.readInt();
+		if(length > 0) {
+			mTorrentBody	= new byte[length];
+			in.readByteArray(this.mTorrentBody);
+		}
     }
 
     public static final Creator<StreamInfo> CREATOR = new Creator<StreamInfo>() {

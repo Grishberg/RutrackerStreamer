@@ -9,14 +9,15 @@ import java.io.Serializable;
  */
 public class MediaContainer implements Serializable{
 	private String torrentUrl;
-	private String torrenBody;
+	private byte[] torrenBody;
 	private String torrentName;
 	private String imageUrl;
 
-	public MediaContainer(String torrentUrl, String torrentName, String imageUrl) {
+	public MediaContainer(String torrentUrl, String torrentName, String imageUrl, byte[] torrentBody) {
 		this.torrentUrl = torrentUrl;
 		this.torrentName = torrentName;
 		this.imageUrl = imageUrl;
+		this.torrenBody	= torrentBody;
 	}
 
 
@@ -32,11 +33,8 @@ public class MediaContainer implements Serializable{
 		return imageUrl;
 	}
 
-	public String getTorrenBody() {
+	public byte[] getTorrenBody() {
 		return torrenBody;
 	}
 
-	public void setTorrenBody(String torrenBody) {
-		this.torrenBody = torrenBody;
-	}
 }

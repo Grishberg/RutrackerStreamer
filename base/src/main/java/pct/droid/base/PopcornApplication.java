@@ -32,6 +32,7 @@ import com.squareup.picasso.Picasso;
 import org.videolan.vlc.VLCApplication;
 
 import java.io.File;
+import java.util.Map;
 
 import pct.droid.base.beaming.BeamManager;
 import pct.droid.base.preferences.Prefs;
@@ -47,10 +48,14 @@ public class PopcornApplication extends VLCApplication {
 
     private static OkHttpClient sHttpClient;
     private static String sDefSystemLanguage;
-
     private static Context appContext;
+	private static PopcornApplication 	instance;
+	private Map<String,String> 			cookie;
 
-    public static Context getAppContext() {
+	public static PopcornApplication getInstance() {
+		return instance;
+	}
+	public static Context getAppContext() {
         return appContext;
     }
 
@@ -63,8 +68,8 @@ public class PopcornApplication extends VLCApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        appContext = getApplicationContext();
-
+        appContext	= getApplicationContext();
+		instance	= this;
         sDefSystemLanguage = LocaleUtils.getCurrentAsString();
 
         Foreground.init(this);
@@ -157,5 +162,13 @@ public class PopcornApplication extends VLCApplication {
         File directory = new File(path, "/torrents/");
         return directory.toString();
     }
+
+	public static void setCookie(Map<String, String> cookie){
+		getInstance().cookie	= cookie;
+	}
+
+	public static Map<String,String> getCookie(){
+		return getInstance().cookie;
+	}
 
 }

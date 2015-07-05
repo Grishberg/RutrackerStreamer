@@ -220,7 +220,7 @@ public abstract class BaseStreamLoadingFragment extends Fragment implements Torr
             mService.stopStreaming();
         }
         //start streaming the new file
-        mService.streamTorrent(torrentUrl);
+        mService.streamTorrent(torrentUrl, mStreamInfo.getTorrentBody());
     }
 
     /**

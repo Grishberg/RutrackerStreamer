@@ -28,8 +28,8 @@ import com.rest.rutracker.rutrackerrestclient.data.api.ApiServiceHelper;
 import com.rest.rutracker.rutrackerrestclient.data.api.request.ViewTopicRequest;
 import com.rest.rutracker.rutrackerrestclient.data.api.response.DataResponse;
 import com.rest.rutracker.rutrackerrestclient.data.api.response.DescriptionDataResponse;
+import com.rest.rutracker.rutrackerrestclient.data.api.response.TorrentFileDataResponse;
 import com.rest.rutracker.rutrackerrestclient.data.containers.InfoContainer;
-import com.rest.rutracker.rutrackerrestclient.data.model.Cheeses;
 import com.rest.rutracker.rutrackerrestclient.data.model.RutrackerFeedParcer;
 import com.squareup.picasso.Picasso;
 
@@ -95,6 +95,8 @@ public class DetailActivity extends AppCompatActivity implements Button.OnClickL
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getImageUrl();
 
+
+
         imageFromTorrent = (ImageView) findViewById(R.id.backdrop);
     }
 
@@ -136,14 +138,29 @@ public class DetailActivity extends AppCompatActivity implements Button.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonLoadTorrentFile:
-                if (mediaContainer==null) {
-                    mediaContainer=new MediaContainer(BASE_TORRENT_LINK + keyTorrentViewTopic,
-                            nameTorrent, imageUrl);
-                }
-                StreamLoadingActivity.startActivity(this ,mediaContainer);
+                onPlayClick();
                 break;
         }
     }
+
+    private void onPlayClick(){
+        ApiServiceHelper.getTorrent(new ViewTopicRequest(keyTorrentViewTopic), new ResultReceiver(new Handler()) {
+            @Override
+            protected void onReceiveResult(int resultCode, Bundle resultData) {
+                if (!resultData.containsKey(ApiService.ERROR_KEY)) {
+                    TorrentFileDataResponse torrentBody
+                            = (TorrentFileDataResponse) resultData.getSerializable(ApiService.RESPONSE_OBJECT_KEY);
+                    mediaContainer = new MediaContainer(BASE_TORRENT_LINK + keyTorrentViewTopic,
+                            nameTorrent, imageUrl, torrentBody.getTorrentFile());
+                    startLoadingActivity(mediaContainer);
+                }
+            }
+        });
+    }
+
+	private void startLoadingActivity(MediaContainer mediaContainer){
+		StreamLoadingActivity.startActivity(this, mediaContainer);
+	}
 
     public void getImageUrlRequest(final MainActivity.IResponseListener responseListener
             , final MainActivity.IErrorListener errorListener) {
@@ -215,6 +232,7 @@ public class DetailActivity extends AppCompatActivity implements Button.OnClickL
             String Content = mValues.get(position);
             holder.mTitleTextView.setText(nameTorrent);
             holder.mDescTextView.setText(Html.fromHtml(Content));
+            holder.mDescTextView.setClickable(true);
         }
 
         @Override

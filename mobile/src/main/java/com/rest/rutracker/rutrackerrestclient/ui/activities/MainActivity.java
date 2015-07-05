@@ -16,11 +16,15 @@ import android.widget.Button;
 
 import com.rest.rutracker.rutrackerrestclient.data.api.ApiService;
 import com.rest.rutracker.rutrackerrestclient.data.api.ApiServiceHelper;
+import com.rest.rutracker.rutrackerrestclient.data.api.request.DataAuthRequest;
 import com.rest.rutracker.rutrackerrestclient.data.api.request.ViewTopicRequest;
+import com.rest.rutracker.rutrackerrestclient.data.api.response.DataLoginResponse;
 import com.rest.rutracker.rutrackerrestclient.data.api.response.DescriptionDataResponse;
-import com.rest.rutracker.rutrackerrestclient.ui.fragment.VideoListFragment;
+import com.rest.rutracker.rutrackerrestclient.data.api.response.TorrentFileDataResponse;
 
 import pct.droid.R;
+import pct.droid.base.providers.media.MediaProvider;
+import com.rest.rutracker.rutrackerrestclient.ui.fragment.VideoListFragment;
 
 
 public class MainActivity extends AppCompatActivity implements VideoListFragment.OnFragmentInteractionListener {
@@ -41,11 +45,24 @@ public class MainActivity extends AppCompatActivity implements VideoListFragment
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
 
-        VideoListFragment videoListFragment=VideoListFragment.newInstance("name","name2");
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.FragmentContainer, videoListFragment)
-                .commit();
+        ApiServiceHelper.getAuth(new DataAuthRequest("rebbe2015","101010"), new ResultReceiver(new Handler()) {
+			@Override
+			protected void onReceiveResult(int resultCode, Bundle resultData) {
+				if (!resultData.containsKey(ApiService.ERROR_KEY)) {
+					DataLoginResponse response
+							= (DataLoginResponse) resultData.getSerializable(ApiService.RESPONSE_OBJECT_KEY);
+					if(response.isAuth()){
+
+						VideoListFragment videoListFragment = VideoListFragment.newInstance("name","name2");
+						getSupportFragmentManager().beginTransaction()
+								.add(R.id.FragmentContainer, videoListFragment)
+								.commit();
+
+					}
+				}
+			}
+		});
 
     }
 

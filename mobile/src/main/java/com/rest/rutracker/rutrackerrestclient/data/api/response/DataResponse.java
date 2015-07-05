@@ -15,17 +15,6 @@ import java.util.List;
  */
 public class DataResponse implements Serializable {
 
- /*   public static final Creator<DataResponse> CREATOR
-            = new Creator<DataResponse>() {
-        public DataResponse createFromParcel(Parcel in) {
-            return new DataResponse(in);
-        }
-
-        public DataResponse[] newArray(int size) {
-            return new DataResponse[size];
-        }
-    };
- */
     private long id;
     private String mXMLString;
 

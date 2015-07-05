@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.rest.rutracker.rutrackerrestclient.data.api.request.DataAuthRequest;
 import com.rest.rutracker.rutrackerrestclient.data.api.response.DataResponse;
 import com.rest.rutracker.rutrackerrestclient.data.containers.InfoContainer;
 import com.rest.rutracker.rutrackerrestclient.data.api.response.DataResponse;
@@ -27,7 +28,7 @@ import com.rest.rutracker.rutrackerrestclient.ui.activities.MainActivity;
 import com.rest.rutracker.rutrackerrestclient.ui.activities.MainActivity.*;
 import com.rest.rutracker.rutrackerrestclient.data.api.ApiService;
 import com.rest.rutracker.rutrackerrestclient.data.api.ApiServiceHelper;
-import com.rest.rutracker.rutrackerrestclient.data.model.Cheeses;
+
 import com.rest.rutracker.rutrackerrestclient.ui.activities.DetailActivity;
 
 import java.util.ArrayList;
@@ -140,10 +141,18 @@ public class VideoListFragment extends Fragment  {
     }
 
 
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+
     public void getCategoriesRequest(final IResponseListener responseListener
             , final IErrorListener errorListener) {
 
-        ApiServiceHelper.getTorrentFeed(new ResultReceiver(new Handler()) {
+        ApiServiceHelper.getTorrentFeed(new DataAuthRequest("rebbe2015","101010"),new ResultReceiver(new Handler()) {
             @Override
             protected void onReceiveResult(int resultCode, Bundle resultData) {
                 if (resultData.containsKey(ApiService.ERROR_KEY)) {
@@ -271,11 +280,6 @@ public class VideoListFragment extends Fragment  {
 
                 }
             });
-            // TODO: ADD IMAGE REQUEST TO RUTRACKER TOPIC
-            //Glide.with(holder.mImageView.getContext())
-              //      .load(Cheeses.getRandomCheeseDrawable())
-                //    .fitCenter()
-                  //  .into(holder.mImageView);
         }
 
         @Override

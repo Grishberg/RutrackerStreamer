@@ -94,7 +94,7 @@ public class StreamLoadingActivity extends PopcornBaseActivity implements Stream
 			media.headerImage = mediaContainer.getImageUrl();
 			media.title = mediaContainer.getTorrentName();
 			media.year = "2011";
-			mInfo = new StreamInfo(media,mediaContainer.getTorrenBody()
+			mInfo = new StreamInfo(media,mediaContainer.getTorrentUrl(),mediaContainer.getTorrenBody()
 					, "no-subs"
 					, ""
 			);

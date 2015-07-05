@@ -395,6 +395,18 @@ public final class TorrentInfo {
         return toEntry().bencode();
     }
 
+    public static TorrentInfo bdecode(String data){
+        lazy_entry e = new lazy_entry();
+        error_code ec = new error_code();
+        int ret = lazy_entry.bdecode(Vectors.string2char_vector(data), e, ec);
+
+        if (ret == 0) {
+            return new TorrentInfo(new torrent_info(e));
+        } else {
+            throw new IllegalArgumentException("Can't decode data");
+        }
+    }
+
     public static TorrentInfo bdecode(byte[] data) {
         lazy_entry e = new lazy_entry();
         error_code ec = new error_code();
