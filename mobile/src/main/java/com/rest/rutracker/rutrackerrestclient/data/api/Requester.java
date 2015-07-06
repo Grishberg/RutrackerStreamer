@@ -97,12 +97,16 @@ public class Requester {
 					.method(Connection.Method.POST)
 					.execute();
 
-
-            Document doc = Jsoup.connect("http://rutracker.org/").cookies(response.cookies()).get();
-            if(doc.outerHtml().contains("Вы зашли как")){
+            response    = Jsoup.connect("http://rutracker.org/").cookies(response.cookies()).execute();
+            String body = response.body();
+			if(body.contains("Вы зашли как")){
 				cookie	= response.cookies();
             }
-			String body = doc.outerHtml();
+//            Document doc = Jsoup.connect("http://rutracker.org/").cookies(response.cookies()).get();
+//            if(doc.outerHtml().contains("Вы зашли как")){
+//				cookie	= response.cookies();
+//            }
+			//String body = doc.outerHtml();
 			Log.d(TAG, "body len="+body.length());
 
 		}catch(Exception e){
