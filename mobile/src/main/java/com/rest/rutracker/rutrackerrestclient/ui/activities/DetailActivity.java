@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -92,6 +95,7 @@ public class DetailActivity extends AppCompatActivity implements Button.OnClickL
 		nameTextView = (TextView) findViewById(R.id.TorrentFileName);
 		descTextView = (TextView) findViewById(R.id.TorrentFileDesc);
 		imageFromTorrent = (ImageView) findViewById(R.id.backdrop);
+
 		getImageAndDesc();
 		buttonPlay.setOnClickListener(this);
 		nameTextView.setText(nameTorrent);
@@ -115,7 +119,8 @@ public class DetailActivity extends AppCompatActivity implements Button.OnClickL
 					///
 					imageUrl = ((DescriptionDataResponse) object).getUrlImage();
 					String html = ((DescriptionDataResponse) object).getHtml();
-					descTextView.setText(Html.fromHtml(html));
+					String htmlWithOutdownloadsSection = html.split("Download")[0];
+					descTextView.setText(Html.fromHtml(htmlWithOutdownloadsSection));
 					getImageFromUrlWithPicasso(imageUrl);
 					Log.d(imageUrl, imageUrl);
 				}
