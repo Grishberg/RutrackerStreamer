@@ -146,4 +146,9 @@
   <string name="vpn_download">Скачивание</string>
   <string name="vpn_later">Позже</string>
   <string name="vpn_hide">Скрыть</string>
+  <!-- Login activity -->
+  <string name="action_sign_in_short">Войти</string>
+  <string name="prompt_name">Логин</string>
+  <string name="prompt_password">пароль</string>
+
 </resources>

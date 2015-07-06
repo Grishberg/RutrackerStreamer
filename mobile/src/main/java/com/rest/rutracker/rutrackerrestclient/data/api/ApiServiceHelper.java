@@ -26,8 +26,8 @@ public class ApiServiceHelper {
 		startServiceWithSerializable(data, ACTION_GET_AUTH, resultReceiver);
 	}
 
-	public static void getTorrentFeed(DataAuthRequest data, ResultReceiver resultReceiver) {
-        startServiceWithSerializable(data, ACTION_GET_OUR_MOVIE_RSS_FEED, resultReceiver);
+	public static void getTorrentFeed( ResultReceiver resultReceiver) {
+        startService(null, ACTION_GET_OUR_MOVIE_RSS_FEED, resultReceiver);
     }
 
     public static void getImageUrl(ViewTopicRequest keyViewTopic, ResultReceiver resultReceiver) {
@@ -38,6 +38,13 @@ public class ApiServiceHelper {
         startServiceWithSerializable(data, ACTION_GET_TORRENT, onServiceResult);
     }
 
+    public static void getForiengTorrentFeed(ResultReceiver resultReceiver) {
+        startService(null, ACTION_GET_FOREING_MOVIE_RSS_FEED, resultReceiver);
+    }
+
+    public static void getSeriesTorrentFeed(ResultReceiver resultReceiver) {
+        startService(null, ACTION_GET_SERIES_MOVIE_RSS_FEED, resultReceiver);
+    }
 
     private static void startService(Parcelable data, int action, ResultReceiver onServiceResult) {
         Intent intent = getIntent(action, onServiceResult);

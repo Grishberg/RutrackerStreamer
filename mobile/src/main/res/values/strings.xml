@@ -19,7 +19,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <!-- General strings -->
-    <string name="app_name" translatable="false">Popcorn Time</string>
+    <string name="app_name" translatable="false">Rutracker-streamer</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="close">Close</string>
@@ -190,5 +190,13 @@ By using \'POPCORN TIME\' or accessing this site you affirm that you are either 
     <string name="vpn_download">Download</string>
     <string name="vpn_later">Later</string>
     <string name="vpn_hide">Hide</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+	<!-- Login activity -->
+	<string name="action_sign_in_short">Sign in</string>
+	<string name="prompt_name">Login</string>
+	<string name="prompt_password">Password</string>
 
 </resources>

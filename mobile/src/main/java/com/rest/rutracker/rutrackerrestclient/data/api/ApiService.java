@@ -24,15 +24,12 @@ public class ApiService extends IntentService {
     public static final String RESPONSE_OBJECT_KEY = "RESPONSE_OBJECT_KEY";
 
     public static final int ACTION_GET_OUR_MOVIE_RSS_FEED   = 101;
+    public static final int ACTION_GET_FOREING_MOVIE_RSS_FEED = 102;
+    public static final int ACTION_GET_SERIES_MOVIE_RSS_FEED = 103;
     public static final int ACTION_GET_IMAGE_URL            = 123;
     public static final int ACTION_GET_TORRENT              = 124;
     public static final int ACTION_GET_AUTH              	= 125;
 
-    public static final int ACTION_GET_CATEGORIES = 1;
-    public static final int ACTION_GET_ARTICLES = 2;
-    public static final int ACTION_ADD_ARTICLE = 3;
-    public static final int ACTION_EDIT_ARTICLE = 4;
-    public static final int ACTION_DELETE_ARTICLE = 5;
     private static final String API_SERVICE = "ApiService";
     private boolean destroyed;
     private ResultReceiver receiver;
@@ -67,6 +64,13 @@ public class ApiService extends IntentService {
 
 			case ACTION_GET_OUR_MOVIE_RSS_FEED:
                 response = requester.getMovies();
+                break;
+
+            case ACTION_GET_FOREING_MOVIE_RSS_FEED:
+                response =requester.getForiengMovies();
+                break;
+            case ACTION_GET_SERIES_MOVIE_RSS_FEED:
+                response =requester.getSeriesMovies();
                 break;
 
             case ACTION_GET_IMAGE_URL:

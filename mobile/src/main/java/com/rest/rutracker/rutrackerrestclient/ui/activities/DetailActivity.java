@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +41,9 @@ import pct.droid.R;
 import pct.droid.activities.StreamLoadingActivity;
 import pct.droid.containers.MediaContainer;
 
+/**
+ * Detail view activity
+ */
 public class DetailActivity extends AppCompatActivity implements Button.OnClickListener {
 
     public static final String TORRENT_VIEW_TOPIC_LINK = "VIEW_TOPIC_LINK";
@@ -61,6 +65,8 @@ public class DetailActivity extends AppCompatActivity implements Button.OnClickL
 
     public final static String EXTRA_INFO = "mInfo";
     private RecyclerView contentRecyclerView;
+    private TextView nameTextView;
+    private TextView descTextView;
 
     public static Intent startActivity(Context context, InfoContainer info) {
         Intent i = new Intent(context, DetailActivity.class);
@@ -69,177 +75,105 @@ public class DetailActivity extends AppCompatActivity implements Button.OnClickL
         return i;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_detail);
 
-        Intent intent = getIntent();
-        infoContainer = null;
-        infoContainer = (InfoContainer) intent.getSerializableExtra(EXTRA_INFO);
-        if (infoContainer!=null) {
-            keyTorrentViewTopic=infoContainer.getTorrentKey();
-            nameTorrent=infoContainer.getTorrentName();
-        }
+		Intent intent = getIntent();
+		infoContainer = null;
+		infoContainer = (InfoContainer) intent.getSerializableExtra(EXTRA_INFO);
+		if (infoContainer!=null) {
+			keyTorrentViewTopic=infoContainer.getTorrentKey();
+			nameTorrent=infoContainer.getTorrentName();
+		}
 
-        buttonPlay = (FloatingActionButton) findViewById(R.id.buttonLoadTorrentFile);
-        contentRecyclerView = (RecyclerView) findViewById(R.id.scrollableview);
-        buttonPlay.setOnClickListener(this);
+		buttonPlay = (FloatingActionButton) findViewById(R.id.buttonLoadTorrentFile);
+		nameTextView = (TextView) findViewById(R.id.TorrentFileName);
+		descTextView = (TextView) findViewById(R.id.TorrentFileDesc);
+		imageFromTorrent = (ImageView) findViewById(R.id.backdrop);
+		getImageAndDesc();
+		buttonPlay.setOnClickListener(this);
+		nameTextView.setText(nameTorrent);
+		descTextView.setText("WAIT PLEASE CONTENT IS LOADING...");
+		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.anim_toolbar);
-        toolbar.setTitle(nameTorrent);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(nameTorrent);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getImageUrl();
-
-
-
-        imageFromTorrent = (ImageView) findViewById(R.id.backdrop);
-    }
-
-
-    private void setupRecyclerView(final RecyclerView recyclerView, String html) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-
-        ArrayList<String> objects = new ArrayList<>();
-        objects.add(html);
-        recyclerView.setAdapter(new SimpleContentAdapter(this,
-                objects));
-    }
+		CollapsingToolbarLayout collapsingToolbar =
+				(CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+		collapsingToolbar.setTitle(nameTorrent);
+	}
 
 
 
-    private void getImageUrl() {
-        getImageUrlRequest(new MainActivity.IResponseListener() {
-            @Override
-            public void onResponse(Object object, int code) {
-                if (code == CODE_GET_IMAGE) {
-                    ///
-                    imageUrl = ((DescriptionDataResponse) object).getUrlImage();
-                    String html = ((DescriptionDataResponse) object).getHtml();
-                    setupRecyclerView(contentRecyclerView, html);
-                    getImageFromUrlWithPicasso(imageUrl);
-                    Log.d(imageUrl, imageUrl);
-                }
-            }
-        }, null);
-    }
+	private void getImageAndDesc() {
+		getImageUrlRequest(new MainActivity.IResponseListener() {
+			@Override
+			public void onResponse(Object object, int code) {
+				if (code == CODE_GET_IMAGE) {
+					///
+					imageUrl = ((DescriptionDataResponse) object).getUrlImage();
+					String html = ((DescriptionDataResponse) object).getHtml();
+					descTextView.setText(Html.fromHtml(html));
+					getImageFromUrlWithPicasso(imageUrl);
+					Log.d(imageUrl, imageUrl);
+				}
+			}
+		}, null);
+	}
 
-    void getImageFromUrlWithPicasso(String imageUrl){
-        Picasso.with(this)
-                .load(imageUrl)
-                .into(imageFromTorrent);
-    }
+	void getImageFromUrlWithPicasso(String imageUrl){
+		Picasso.with(this)
+				.load(imageUrl)
+				.into(imageFromTorrent);
+	}
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.buttonLoadTorrentFile:
-                onPlayClick();
-                break;
-        }
-    }
 
-    private void onPlayClick(){
-        ApiServiceHelper.getTorrent(new ViewTopicRequest(keyTorrentViewTopic), new ResultReceiver(new Handler()) {
-            @Override
-            protected void onReceiveResult(int resultCode, Bundle resultData) {
-                if (!resultData.containsKey(ApiService.ERROR_KEY)) {
-                    TorrentFileDataResponse torrentBody
-                            = (TorrentFileDataResponse) resultData.getSerializable(ApiService.RESPONSE_OBJECT_KEY);
-                    mediaContainer = new MediaContainer(BASE_TORRENT_LINK + keyTorrentViewTopic,
-                            nameTorrent, imageUrl, torrentBody.getTorrentFile());
-                    startLoadingActivity(mediaContainer);
-                }
-            }
-        });
-    }
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+			case R.id.buttonLoadTorrentFile:
+				onPlayClick();
+				break;
+		}
+	}
+
+	private void onPlayClick(){
+		ApiServiceHelper.getTorrent(new ViewTopicRequest(keyTorrentViewTopic), new ResultReceiver(new Handler()) {
+			@Override
+			protected void onReceiveResult(int resultCode, Bundle resultData) {
+				if (!resultData.containsKey(ApiService.ERROR_KEY)) {
+					TorrentFileDataResponse torrentBody
+							= (TorrentFileDataResponse) resultData.getSerializable(ApiService.RESPONSE_OBJECT_KEY);
+					mediaContainer = new MediaContainer(BASE_TORRENT_LINK + keyTorrentViewTopic,
+							nameTorrent, imageUrl, torrentBody.getTorrentFile());
+					startLoadingActivity(mediaContainer);
+				}
+			}
+		});
+	}
 
 	private void startLoadingActivity(MediaContainer mediaContainer){
 		StreamLoadingActivity.startActivity(this, mediaContainer);
 	}
 
-    public void getImageUrlRequest(final MainActivity.IResponseListener responseListener
-            , final MainActivity.IErrorListener errorListener) {
+	public void getImageUrlRequest(final MainActivity.IResponseListener responseListener
+			, final MainActivity.IErrorListener errorListener) {
 
-        ApiServiceHelper.getImageUrl(new ViewTopicRequest(keyTorrentViewTopic), new ResultReceiver(new Handler()) {
-            @Override
-            protected void onReceiveResult(int resultCode, Bundle resultData) {
-                if (resultData.containsKey(ApiService.ERROR_KEY)) {
-                    if (errorListener != null) {
-                        errorListener.onError();
-                    }
-                } else {
-                    if (responseListener != null) {
-                        responseListener.onResponse(resultData.getSerializable(ApiService.RESPONSE_OBJECT_KEY), CODE_GET_IMAGE);
-                    }
-                }
-            }
-        });
-    }
-
-    public class SimpleContentAdapter
-            extends RecyclerView.Adapter<SimpleContentAdapter.ViewHolder> {
-
-        private final TypedValue mTypedValue = new TypedValue();
-        private int mBackground;
-        private List<String> mValues;
-
-        public  class ViewHolder extends RecyclerView.ViewHolder {
-            public String mBoundLink;
-
-            public final View mView;
-            public final TextView mTitleTextView;
-            public TextView mDescTextView;
-
-
-            public ViewHolder(View view) {
-                super(view);
-                mView = view;
-                mTitleTextView  = (TextView) view.findViewById(R.id.titleTextView);
-                mDescTextView = (TextView) view.findViewById(R.id.descTextView);
-            }
-
-            @Override
-            public String toString() {
-                return super.toString() + " '" + mBoundLink;
-            }
-        }
-
-        public String getValueAt(int position) {
-            return mValues.get(position);
-        }
-
-        public SimpleContentAdapter(Context context, List<String> items) {
-            context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
-            mBackground = mTypedValue.resourceId;
-            mValues = items;
-        }
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_content_item, parent, false);
-            view.setBackgroundResource(mBackground);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
-            String Content = mValues.get(position);
-            holder.mTitleTextView.setText(nameTorrent);
-            holder.mDescTextView.setText(Html.fromHtml(Content));
-            holder.mDescTextView.setClickable(true);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mValues.size();
-        }
-    }
-
-
+		ApiServiceHelper.getImageUrl(new ViewTopicRequest(keyTorrentViewTopic), new ResultReceiver(new Handler()) {
+			@Override
+			protected void onReceiveResult(int resultCode, Bundle resultData) {
+				if (resultData.containsKey(ApiService.ERROR_KEY)) {
+					if (errorListener != null) {
+						errorListener.onError();
+					}
+				} else {
+					if (responseListener != null) {
+						responseListener.onResponse(resultData.getSerializable(ApiService.RESPONSE_OBJECT_KEY), CODE_GET_IMAGE);
+					}
+				}
+			}
+		});
+	}
 }

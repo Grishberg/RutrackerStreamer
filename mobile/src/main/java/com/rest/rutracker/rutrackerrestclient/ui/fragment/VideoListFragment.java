@@ -48,32 +48,29 @@ import pct.droid.R;
 public class VideoListFragment extends Fragment  {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String MOVIE_TYPE = "MOVIE_TYPE";
     private static final String ARG_PARAM2 = "param2";
+    public static final int TYPE_OUR_MOVIE = 0;
+    public static final int TYPE_FOREIGN_LANG = 1;
+    public static final int TYPE_RUSSIAN_SERIES = 2;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private int mMovieCategory;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment VideoListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static VideoListFragment newInstance(String param1, String param2) {
+
+    public static Fragment newInstance(int typeOurMovie) {
         VideoListFragment fragment = new VideoListFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(MOVIE_TYPE, typeOurMovie);
         fragment.setArguments(args);
         return fragment;
     }
+
+
 
     public VideoListFragment() {
         // Required empty public constructor
@@ -83,23 +80,9 @@ public class VideoListFragment extends Fragment  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mMovieCategory = getArguments().getInt(MOVIE_TYPE);
         }
 
-        getCategoriesRequest(new IResponseListener() {
-            @Override
-            public void onResponse(Object id, int code) {
-                    if(code == MainActivity.CODE_GET_TORRENT_FEED){
-                        //List<RutrackerFeedParcer.Entry> entries = (List<RutrackerFeedParcer.Entry>) id;
-                    }
-            }
-        }, new IErrorListener() {
-            @Override
-            public void onError() {
-
-            }
-        });
     }
 
     @Nullable
@@ -114,11 +97,11 @@ public class VideoListFragment extends Fragment  {
     private void setupRecyclerView(final RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
 
-        getCategoriesRequest(new IResponseListener() {
+        getMovie(new IResponseListener() {
             @Override
             public void onResponse(Object id, int code) {
                 if (code == MainActivity.CODE_GET_TORRENT_FEED) {
-                    List<RutrackerFeedParcer.Entry> entries =((DataResponse) id).getXMLEntry();
+                    List<RutrackerFeedParcer.Entry> entries = ((DataResponse) id).getXMLEntry();
                     recyclerView.setAdapter(new SimpleStringRecyclerViewAdapter(getActivity(),
                             entries));
                 }
@@ -128,7 +111,7 @@ public class VideoListFragment extends Fragment  {
             public void onError() {
 
             }
-        });
+        }, mMovieCategory);
     }
 
     private List<String> getRandomSublist(String[] array, int amount) {
@@ -149,23 +132,66 @@ public class VideoListFragment extends Fragment  {
     }
 
 
-    public void getCategoriesRequest(final IResponseListener responseListener
-            , final IErrorListener errorListener) {
+    public void getMovie(final IResponseListener responseListener
+            , final IErrorListener errorListener, int type) {
 
-        ApiServiceHelper.getTorrentFeed(new DataAuthRequest("rebbe2015","101010"),new ResultReceiver(new Handler()) {
-            @Override
-            protected void onReceiveResult(int resultCode, Bundle resultData) {
-                if (resultData.containsKey(ApiService.ERROR_KEY)) {
-                    if (errorListener != null) {
-                        errorListener.onError();
+        switch (type){
+            case TYPE_FOREIGN_LANG:
+                ApiServiceHelper.getForiengTorrentFeed(new ResultReceiver(new Handler()) {
+                    @Override
+                    protected void onReceiveResult(int resultCode, Bundle resultData) {
+                        if (resultData.containsKey(ApiService.ERROR_KEY)) {
+                            if (errorListener != null) {
+                                errorListener.onError();
+                            }
+                        } else {
+                            if (responseListener != null) {
+                                responseListener.onResponse(resultData.getSerializable(ApiService.RESPONSE_OBJECT_KEY), MainActivity.CODE_GET_TORRENT_FEED);
+                            }
+                        }
                     }
-                } else {
-                    if (responseListener != null) {
-                        responseListener.onResponse(resultData.getSerializable(ApiService.RESPONSE_OBJECT_KEY),MainActivity.CODE_GET_TORRENT_FEED);
+                });
+                break;
+
+            case TYPE_OUR_MOVIE:
+                ApiServiceHelper.getTorrentFeed(new ResultReceiver(new Handler()) {
+                    @Override
+                    protected void onReceiveResult(int resultCode, Bundle resultData) {
+                        if (resultData.containsKey(ApiService.ERROR_KEY)) {
+                            if (errorListener != null) {
+                                errorListener.onError();
+                            }
+                        } else {
+                            if (responseListener != null) {
+                                responseListener.onResponse(resultData.getSerializable(ApiService.RESPONSE_OBJECT_KEY), MainActivity.CODE_GET_TORRENT_FEED);
+                            }
+                        }
                     }
-                }
-            }
-        });
+                });
+                break;
+
+            case TYPE_RUSSIAN_SERIES:
+                ApiServiceHelper.getSeriesTorrentFeed(new ResultReceiver(new Handler()) {
+                    @Override
+                    protected void onReceiveResult(int resultCode, Bundle resultData) {
+                        if (resultData.containsKey(ApiService.ERROR_KEY)) {
+                            if (errorListener != null) {
+                                errorListener.onError();
+                            }
+                        } else {
+                            if (responseListener != null) {
+                                responseListener.onResponse(resultData.getSerializable(ApiService.RESPONSE_OBJECT_KEY), MainActivity.CODE_GET_TORRENT_FEED);
+                            }
+                        }
+                    }
+                });
+                break;
+        }
+
+
+
+
+
 
     }
 
@@ -187,7 +213,6 @@ public class VideoListFragment extends Fragment  {
         super.onDetach();
         mListener = null;
     }
-
 
 
     /**
@@ -215,7 +240,6 @@ public class VideoListFragment extends Fragment  {
             public String mBoundLink;
 
             public final View mView;
-            public final ImageView mImageView;
             public final TextView mTitleTextView;
             public final TextView mDescTextView;
             public final TextView mSizeTextView;
@@ -224,7 +248,6 @@ public class VideoListFragment extends Fragment  {
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mImageView = (ImageView) view.findViewById(R.id.avatar);
                 mTitleTextView  = (TextView) view.findViewById(R.id.titleTextView);
                 mDescTextView = (TextView) view.findViewById(R.id.descTextView);
                 mSizeTextView = (TextView) view.findViewById(R.id.sizeTextView);
@@ -275,7 +298,7 @@ public class VideoListFragment extends Fragment  {
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    InfoContainer infoContainer = new InfoContainer(split[0], holder.mBoundLink.split("t=")[1] );
+                    InfoContainer infoContainer = new InfoContainer(split[0], holder.mBoundLink.split("t=")[1]);
                     DetailActivity.startActivity(v.getContext(),infoContainer);
 
                 }
@@ -287,6 +310,4 @@ public class VideoListFragment extends Fragment  {
             return mValues.size();
         }
     }
-
-
 }

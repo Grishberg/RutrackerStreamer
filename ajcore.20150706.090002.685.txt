@@ -1,0 +1,309 @@
+---- AspectJ Properties ---
+AspectJ Compiler 1.8.5 built on Thursday Jan 29, 2015 at 01:03:58 GMT
+---- Dump Properties ---
+Dump file: ajcore.20150706.090002.685.txt
+Dump reason: java.lang.OutOfMemoryError
+Dump on exception: true
+Dump at exit condition: abort
+---- Exception Information ---
+java.lang.OutOfMemoryError: PermGen space
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:449)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:71)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:361)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at org.aspectj.weaver.bcel.BcelObjectType.getLazyClassGen(BcelObjectType.java:560)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1682)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveWithoutDump(BcelWeaver.java:1633)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveAndNotify(BcelWeaver.java:1398)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1184)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.weaveQueuedEntries(AjPipeliningCompilerAdapter.java:514)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.afterCompiling(AjPipeliningCompilerAdapter.java:375)
+	at org.aspectj.ajdt.internal.compiler.CompilerAdapter.ajc$afterReturning$org_aspectj_ajdt_internal_compiler_CompilerAdapter$2$f9cc9ca0(CompilerAdapter.aj:78)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:421)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1036)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:272)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:185)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:371)
+	at org.aspectj.tools.ajc.Main$run.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)
+	at hugo.weaving.plugin.HugoPlugin$_apply_closure2_closure3.doCall(HugoPlugin.groovy:55)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+---- System Properties ---
+java.vendor=Oracle Corporation
+com.apple.mrj.application.live-resize=false
+sun.java.launcher=SUN_STANDARD
+idea.executable=studio
+sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+idea.paths.selector=AndroidStudioPreview1.3
+os.name=Mac OS X
+sun.boot.class.path=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/classes
+java.vm.specification.vendor=Oracle Corporation
+java.runtime.version=1.7.0_79-b15
+jb.vmOptionsFile=/Applications/Android Studio.app/Contents/bin/studio.vmoptions
+idea.java.redist=NoJavaDistribution
+user.name=G
+apple.awt.fullscreencapturealldisplays=false
+java.rmi.server.disableHttp=true
+idea.use.default.antialiasing.in.editor=false
+idea.active=true
+idea.home.path=/Applications/Android Studio.app/Contents
+http.keepAlive=true
+svnkit.http.methods=Basic,Digest,NTLM
+user.language=ru
+sun.boot.library.path=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib
+idea.fatal.error.notification=enabled
+jna.nosys=true
+swing.bufferPerWindow=false
+CVS_PASSFILE=~/.cvspass
+java.version=1.7.0_79
+user.timezone=Asia/Novokuznetsk
+java.net.preferIPv4Stack=true
+sun.arch.data.model=64
+http.nonProxyHosts=local|*.local|169.254/16|*.169.254/16
+java.endorsed.dirs=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/endorsed
+apple.awt.UIElement=true
+sun.cpu.isalist=
+sun.jnu.encoding=UTF-8
+file.encoding.pkg=sun.io
+file.separator=/
+java.specification.name=Java Platform API Specification
+java.class.version=51.0
+user.country=RU
+jna.boot.library.path=
+java.home=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre
+JVMVersion=1.6*
+java.vm.info=mixed mode
+os.version=10.10.2
+jna.debug_load=true
+path.separator=:
+java.vm.version=24.79-b02
+idea.smooth.progress=false
+jna.debug_load.jna=true
+idea.no.launcher=false
+user.variant=
+java.awt.printerjob=sun.lwawt.macosx.CPrinterJob
+sun.io.unicode.encoding=UnicodeBig
+idea.cycle.buffer.size=1024
+awt.toolkit=sun.lwawt.macosx.LWCToolkit
+socksNonProxyHosts=local|*.local|169.254/16|*.169.254/16
+io.netty.processId=26119
+log4j.defaultInitOverride=true
+ftp.nonProxyHosts=local|*.local|169.254/16|*.169.254/16
+idea.platform.prefix=AndroidStudio
+user.home=/Users/G
+idea.dynamic.classpath=false
+__idea.mac.env.lock=unlocked
+java.specification.vendor=Oracle Corporation
+apple.laf.useScreenMenuBar=true
+jna.encoding=UTF8
+java.library.path=/Users/G/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+java.vendor.url=http://java.oracle.com/
+java.vm.vendor=Oracle Corporation
+gopherProxySet=false
+external.system.remote.process.idle.ttl.ms=-1
+crashlytics.logger.home=/Users/G/Library/Caches/com.crashlytics/com.crashlytics.tools/crashlytics.log
+java.runtime.name=Java(TM) SE Runtime Environment
+sun.java.command=org.gradle.launcher.daemon.bootstrap.GradleDaemon 2.2.1 /Users/G/.gradle/daemon 10800000 9e8287da-7466-4716-bda1-9ab2053870b1 -Xmx1024m -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+java.class.path=/Users/G/.gradle/wrapper/dists/gradle-2.2.1-all/c64ydeuardnfqctvr1gm30w53/gradle-2.2.1/lib/gradle-launcher-2.2.1.jar
+io.netty.machineId=9e43d860
+java.vm.specification.name=Java Virtual Machine Specification
+idea.xdebug.key=-Xdebug
+idea.popup.weight=heavy
+java.vm.specification.version=1.7
+sun.cpu.endian=little
+sun.os.patch.level=unknown
+java.io.tmpdir=/var/folders/gq/x8pbplrs6yqf9cv0mhdd4j8c0000gn/T/
+java.vendor.url.bug=http://bugreport.sun.com/bugreport/
+svnkit.log.native.calls=true
+java.rmi.server.hostname=localhost
+jna.platform.library.path=/usr/lib:/usr/lib
+os.arch=x86_64
+java.awt.graphicsenv=sun.awt.CGraphicsEnvironment
+idea.max.intellisense.filesize=2500
+java.ext.dirs=/Users/G/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
+user.dir=/Users/G/Documents/Projects/android/RutrackerStreamer
+apple.awt.graphics.UseQuartz=true
+line.separator=
+
+java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+file.encoding=UTF-8
+java.specification.version=1.7
+---- Command Line ---
+-showWeaveInfo
+-1.5
+-inpath
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/classes/debug
+-aspectpath
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/base/unspecified/jars/libs/juniversalchardet-1.0.3.jar:/Users/G/.gradle/caches/modules-2/files-2.1/org.apache.oltu.oauth2/org.apache.oltu.oauth2.client/1.0.0/a4ac555e984788463ea789e04cc79c040d4de6a3/org.apache.oltu.oauth2.client-1.0.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/org.apache.oltu.oauth2/org.apache.oltu.oauth2.common/1.0.0/d91b9ea335ca014ca57574f8bde5fd1a0b0de8c1/org.apache.oltu.oauth2.common-1.0.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.koushikdutta.async/androidasync/2.1.6/e3d5f6ab2003e31f2cf5ea61b4731a21e9517935/androidasync-2.1.6.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.jakewharton.hugo/hugo-runtime/1.2.1/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.3.2/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.8/af3be3f74d25fc5163b54f56a0d394b462dafafd/commons-codec-1.8.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/net.rdrei.android.dirchooser/library/2.1/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjrt/1.8.5/39a8ff2d1f79267907f5573c090b342b040b9682/aspectjrt-1.8.5.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.larswerkman/HoloColorPicker/1.5/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.3/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/connectsdk/unspecified/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/xmlrpc/unspecified/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/connectsdk/unspecified/jars/libs/javax.jmdns_3.4.1-patch2.jar:/Users/G/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/palette-v7/22.2.0/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.8.2/64238922c4006c3d0a9951c4c03983ecc6a1e1a0/jsoup-1.8.2.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/connectsdk/unspecified/jars/libs/java-websocket-patch.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.2/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-urlconnection/2.4.0/a0c195f14cefc7597e0bebf22c3e7b43920dcf4/okhttp-urlconnection-2.4.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/vlc/unspecified/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/6.5.87/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/6.5.87/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.2.2/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.2/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.7/5599707a3eaad13e889f691b3af78c8c03842195/joda-time-2.7.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/6.1.0/63735f48b82bcd24cdd33821342428252eb1ca5a/butterknife-6.1.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.jpardogo.materialtabstrip/library/1.1.0/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/design/22.2.0/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.6.0/a7537446a030da8eb0da4c71424d16c2589f6c4a/glide-3.6.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.jakewharton.timber/timber/3.1.0/3ab2aedaeb4bfa698d0021cb843b2040fbf57fc/timber-3.1.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.jakewharton.hugo/hugo-annotations/1.2.1/b01150795c5cdca1eb7e501bf00f105ff0e31501/hugo-annotations-1.2.1.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/base/unspecified/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/libs/internal_impl-22.2.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.9.0/a681c044244d9fc375198588297a39ba78028423/retrofit-1.9.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.github.gabrielemariotti.changeloglib/library/1.5.2/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.0/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.6.1/6f3b8a24bf970f17289b234284c94f43eb42f0e4/slf4j-api-1.6.1.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.github.nirhart/parallaxscroll/1.0/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.github.johnkil.android-robototextview/robototextview/2.4.0/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.uwetrottmann/trakt-java/4.3.0/91e03f7f23ec20394f7f87c7ecfcda2bc9ea7eec/trakt-java-4.3.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.sothree.slidinguppanel/library/3.0.0/jars/classes.jar
+-d
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/classes/debug
+-classpath
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/base/unspecified/jars/libs/juniversalchardet-1.0.3.jar:/Users/G/.gradle/caches/modules-2/files-2.1/org.apache.oltu.oauth2/org.apache.oltu.oauth2.client/1.0.0/a4ac555e984788463ea789e04cc79c040d4de6a3/org.apache.oltu.oauth2.client-1.0.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/org.apache.oltu.oauth2/org.apache.oltu.oauth2.common/1.0.0/d91b9ea335ca014ca57574f8bde5fd1a0b0de8c1/org.apache.oltu.oauth2.common-1.0.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.koushikdutta.async/androidasync/2.1.6/e3d5f6ab2003e31f2cf5ea61b4731a21e9517935/androidasync-2.1.6.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.jakewharton.hugo/hugo-runtime/1.2.1/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.3.2/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.8/af3be3f74d25fc5163b54f56a0d394b462dafafd/commons-codec-1.8.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/net.rdrei.android.dirchooser/library/2.1/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjrt/1.8.5/39a8ff2d1f79267907f5573c090b342b040b9682/aspectjrt-1.8.5.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.larswerkman/HoloColorPicker/1.5/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.3/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/connectsdk/unspecified/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/xmlrpc/unspecified/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/connectsdk/unspecified/jars/libs/javax.jmdns_3.4.1-patch2.jar:/Users/G/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/palette-v7/22.2.0/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.8.2/64238922c4006c3d0a9951c4c03983ecc6a1e1a0/jsoup-1.8.2.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/connectsdk/unspecified/jars/libs/java-websocket-patch.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.2/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-urlconnection/2.4.0/a0c195f14cefc7597e0bebf22c3e7b43920dcf4/okhttp-urlconnection-2.4.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/vlc/unspecified/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/6.5.87/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/6.5.87/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.2.2/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.2/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.7/5599707a3eaad13e889f691b3af78c8c03842195/joda-time-2.7.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/6.1.0/63735f48b82bcd24cdd33821342428252eb1ca5a/butterknife-6.1.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.jpardogo.materialtabstrip/library/1.1.0/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/design/22.2.0/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.6.0/a7537446a030da8eb0da4c71424d16c2589f6c4a/glide-3.6.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.jakewharton.timber/timber/3.1.0/3ab2aedaeb4bfa698d0021cb843b2040fbf57fc/timber-3.1.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.jakewharton.hugo/hugo-annotations/1.2.1/b01150795c5cdca1eb7e501bf00f105ff0e31501/hugo-annotations-1.2.1.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/base/unspecified/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/libs/internal_impl-22.2.0.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.9.0/a681c044244d9fc375198588297a39ba78028423/retrofit-1.9.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.github.gabrielemariotti.changeloglib/library/1.5.2/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.0/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.6.1/6f3b8a24bf970f17289b234284c94f43eb42f0e4/slf4j-api-1.6.1.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.github.nirhart/parallaxscroll/1.0/jars/classes.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.github.johnkil.android-robototextview/robototextview/2.4.0/jars/classes.jar:/Users/G/.gradle/caches/modules-2/files-2.1/com.uwetrottmann/trakt-java/4.3.0/91e03f7f23ec20394f7f87c7ecfcda2bc9ea7eec/trakt-java-4.3.0.jar:/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.sothree.slidinguppanel/library/3.0.0/jars/classes.jar
+-bootclasspath
+/Users/G/Library/Android/sdk/platforms/android-22/android.jar
+---- Full Classpath ---
+/Users/G/Library/Android/sdk/platforms/android-22/android.jar(26024862 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/classes/debug(7 entries)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/base/unspecified/jars/libs/juniversalchardet-1.0.3.jar(206373 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/org.apache.oltu.oauth2/org.apache.oltu.oauth2.client/1.0.0/a4ac555e984788463ea789e04cc79c040d4de6a3/org.apache.oltu.oauth2.client-1.0.0.jar(31161 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/org.apache.oltu.oauth2/org.apache.oltu.oauth2.common/1.0.0/d91b9ea335ca014ca57574f8bde5fd1a0b0de8c1/org.apache.oltu.oauth2.common-1.0.0.jar(52313 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.koushikdutta.async/androidasync/2.1.6/e3d5f6ab2003e31f2cf5ea61b4731a21e9517935/androidasync-2.1.6.jar(573784 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.jakewharton.hugo/hugo-runtime/1.2.1/jars/classes.jar(6682 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.3.2/jars/classes.jar(5518 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.8/af3be3f74d25fc5163b54f56a0d394b462dafafd/commons-codec-1.8.jar(263865 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/net.rdrei.android.dirchooser/library/2.1/jars/classes.jar(17367 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjrt/1.8.5/39a8ff2d1f79267907f5573c090b342b040b9682/aspectjrt-1.8.5.jar(117529 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.larswerkman/HoloColorPicker/1.5/jars/classes.jar(29556 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.3/jars/classes.jar(243476 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/connectsdk/unspecified/jars/classes.jar(605235 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar(582035 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar(110747 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/classes.jar(165467 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/xmlrpc/unspecified/jars/classes.jar(25399 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/connectsdk/unspecified/jars/libs/javax.jmdns_3.4.1-patch2.jar(210945 bytes)
+/Users/G/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar(19096 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar(64661 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/palette-v7/22.2.0/jars/classes.jar(19599 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar(5493 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.8.2/64238922c4006c3d0a9951c4c03983ecc6a1e1a0/jsoup-1.8.2.jar(314978 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/connectsdk/unspecified/jars/libs/java-websocket-patch.jar(108309 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.2/jars/classes.jar(129884 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-urlconnection/2.4.0/a0c195f14cefc7597e0bebf22c3e7b43920dcf4/okhttp-urlconnection-2.4.0.jar(18319 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/vlc/unspecified/jars/classes.jar(54718 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/6.5.87/jars/classes.jar(104079 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar(21329 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/6.5.87/jars/classes.jar(791661 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar(266259 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar(319099 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar(883426 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.2.2/jars/classes.jar(32610 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.2/jars/classes.jar(14579 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.7/5599707a3eaad13e889f691b3af78c8c03842195/joda-time-2.7.jar(589289 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/6.1.0/63735f48b82bcd24cdd33821342428252eb1ca5a/butterknife-6.1.0.jar(50414 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.jpardogo.materialtabstrip/library/1.1.0/jars/classes.jar(17542 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/design/22.2.0/jars/classes.jar(205003 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar(120459 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.6.0/a7537446a030da8eb0da4c71424d16c2589f6c4a/glide-3.6.0.jar(474119 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.jakewharton.timber/timber/3.1.0/3ab2aedaeb4bfa698d0021cb843b2040fbf57fc/timber-3.1.0.jar(7822 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.jakewharton.hugo/hugo-annotations/1.2.1/b01150795c5cdca1eb7e501bf00f105ff0e31501/hugo-annotations-1.2.1.jar(843 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/base/unspecified/jars/classes.jar(920996 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/libs/internal_impl-22.2.0.jar(19564 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar(210856 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.9.0/a681c044244d9fc375198588297a39ba78028423/retrofit-1.9.0.jar(121559 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.github.gabrielemariotti.changeloglib/library/1.5.2/jars/classes.jar(20170 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.0/jars/classes.jar(252391 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.6.1/6f3b8a24bf970f17289b234284c94f43eb42f0e4/slf4j-api-1.6.1.jar(25496 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.github.nirhart/parallaxscroll/1.0/jars/classes.jar(10716 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.github.johnkil.android-robototextview/robototextview/2.4.0/jars/classes.jar(20721 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.uwetrottmann/trakt-java/4.3.0/91e03f7f23ec20394f7f87c7ecfcda2bc9ea7eec/trakt-java-4.3.0.jar(76242 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.sothree.slidinguppanel/library/3.0.0/jars/classes.jar(34500 bytes)
+/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/ext/dnsns.jar(8923 bytes)
+/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/ext/localedata.jar(550859 bytes)
+/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/ext/sunec.jar(15930 bytes)
+/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar(198307 bytes)
+/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar(238785 bytes)
+/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/ext/zipfs.jar(68751 bytes)
+/System/Library/Java/Extensions/MRJToolkit.jar(12848 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/base/unspecified/jars/libs/juniversalchardet-1.0.3.jar(206373 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/org.apache.oltu.oauth2/org.apache.oltu.oauth2.client/1.0.0/a4ac555e984788463ea789e04cc79c040d4de6a3/org.apache.oltu.oauth2.client-1.0.0.jar(31161 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/org.apache.oltu.oauth2/org.apache.oltu.oauth2.common/1.0.0/d91b9ea335ca014ca57574f8bde5fd1a0b0de8c1/org.apache.oltu.oauth2.common-1.0.0.jar(52313 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.koushikdutta.async/androidasync/2.1.6/e3d5f6ab2003e31f2cf5ea61b4731a21e9517935/androidasync-2.1.6.jar(573784 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.jakewharton.hugo/hugo-runtime/1.2.1/jars/classes.jar(6682 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.3.2/jars/classes.jar(5518 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.8/af3be3f74d25fc5163b54f56a0d394b462dafafd/commons-codec-1.8.jar(263865 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/net.rdrei.android.dirchooser/library/2.1/jars/classes.jar(17367 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjrt/1.8.5/39a8ff2d1f79267907f5573c090b342b040b9682/aspectjrt-1.8.5.jar(117529 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.larswerkman/HoloColorPicker/1.5/jars/classes.jar(29556 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.3/jars/classes.jar(243476 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/connectsdk/unspecified/jars/classes.jar(605235 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar(582035 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar(110747 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/classes.jar(165467 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/xmlrpc/unspecified/jars/classes.jar(25399 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/connectsdk/unspecified/jars/libs/javax.jmdns_3.4.1-patch2.jar(210945 bytes)
+/Users/G/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar(19096 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar(64661 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/palette-v7/22.2.0/jars/classes.jar(19599 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar(5493 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.8.2/64238922c4006c3d0a9951c4c03983ecc6a1e1a0/jsoup-1.8.2.jar(314978 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/connectsdk/unspecified/jars/libs/java-websocket-patch.jar(108309 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.2/jars/classes.jar(129884 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-urlconnection/2.4.0/a0c195f14cefc7597e0bebf22c3e7b43920dcf4/okhttp-urlconnection-2.4.0.jar(18319 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/vlc/unspecified/jars/classes.jar(54718 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/6.5.87/jars/classes.jar(104079 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar(21329 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/6.5.87/jars/classes.jar(791661 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar(266259 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar(319099 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar(883426 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.2.2/jars/classes.jar(32610 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.2/jars/classes.jar(14579 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.7/5599707a3eaad13e889f691b3af78c8c03842195/joda-time-2.7.jar(589289 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/6.1.0/63735f48b82bcd24cdd33821342428252eb1ca5a/butterknife-6.1.0.jar(50414 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.jpardogo.materialtabstrip/library/1.1.0/jars/classes.jar(17542 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/design/22.2.0/jars/classes.jar(205003 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar(120459 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.6.0/a7537446a030da8eb0da4c71424d16c2589f6c4a/glide-3.6.0.jar(474119 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.jakewharton.timber/timber/3.1.0/3ab2aedaeb4bfa698d0021cb843b2040fbf57fc/timber-3.1.0.jar(7822 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.jakewharton.hugo/hugo-annotations/1.2.1/b01150795c5cdca1eb7e501bf00f105ff0e31501/hugo-annotations-1.2.1.jar(843 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/RutrackerStreamer/base/unspecified/jars/classes.jar(920996 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/libs/internal_impl-22.2.0.jar(19564 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar(210856 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.9.0/a681c044244d9fc375198588297a39ba78028423/retrofit-1.9.0.jar(121559 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.github.gabrielemariotti.changeloglib/library/1.5.2/jars/classes.jar(20170 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.0/jars/classes.jar(252391 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.6.1/6f3b8a24bf970f17289b234284c94f43eb42f0e4/slf4j-api-1.6.1.jar(25496 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.github.nirhart/parallaxscroll/1.0/jars/classes.jar(10716 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.github.johnkil.android-robototextview/robototextview/2.4.0/jars/classes.jar(20721 bytes)
+/Users/G/.gradle/caches/modules-2/files-2.1/com.uwetrottmann/trakt-java/4.3.0/91e03f7f23ec20394f7f87c7ecfcda2bc9ea7eec/trakt-java-4.3.0.jar(76242 bytes)
+/Users/G/Documents/Projects/android/RutrackerStreamer/mobile/build/intermediates/exploded-aar/com.sothree.slidinguppanel/library/3.0.0/jars/classes.jar(34500 bytes)
+---- Compiler Messages ---
+info Pipelining compilation
+info weaver operating in reweavable mode.  Need to verify any required types exist.
+abort ABORT -- (OutOfMemoryError) PermGen space
+PermGen space
+java.lang.OutOfMemoryError: PermGen space
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:449)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:71)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:361)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at org.aspectj.weaver.bcel.BcelObjectType.getLazyClassGen(BcelObjectType.java:560)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1682)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveWithoutDump(BcelWeaver.java:1633)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveAndNotify(BcelWeaver.java:1398)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1184)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.weaveQueuedEntries(AjPipeliningCompilerAdapter.java:514)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.afterCompiling(AjPipeliningCompilerAdapter.java:375)
+	at org.aspectj.ajdt.internal.compiler.CompilerAdapter.ajc$afterReturning$org_aspectj_ajdt_internal_compiler_CompilerAdapter$2$f9cc9ca0(CompilerAdapter.aj:78)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:421)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1036)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:272)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:185)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:371)
+	at org.aspectj.tools.ajc.Main$run.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)
+	at hugo.weaving.plugin.HugoPlugin$_apply_closure2_closure3.doCall(HugoPlugin.groovy:55)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+

@@ -57,6 +57,8 @@ import static com.rest.rutracker.rutrackerrestclient.data.model.OpenDBHelper.COL
 public class Requester {
 
     public static final String DEFAULT_MOVIE_URL = "2200.atom";
+    public static final String DEFAULT_FORIENG_URL = "2093.atom" ;
+    public static final String DEFAULT_SERIES_URL = "189.atom";
 
     private static final String RUTRACKER_AUTH_URL  = "http://login.rutracker.org/forum/login.php";
     private static final String SERVER = "http://feed.rutracker.org/atom/f/";
@@ -95,25 +97,17 @@ public class Requester {
 					.method(Connection.Method.POST)
 					.execute();
 
-			cookie	= response.cookies();
 
+            Document doc = Jsoup.connect("http://rutracker.org/").cookies(response.cookies()).get();
+            if(doc.outerHtml().contains("Вы зашли как")){
+				cookie	= response.cookies();
+            }
+			String body = doc.outerHtml();
+			Log.d(TAG, "body len="+body.length());
 
-/*
-			if(cookie!=null && cookie.size() > 0){
-				StringBuilder cookieContainer = new StringBuilder();
-				for(Map.Entry<String,String> entry: cookie.entrySet()){
-					if(cookieContainer.length() > 0){
-						cookieContainer.append(";");
-					}
-					cookieContainer.append(entry.getKey());
-					cookieContainer.append(":");
-					cookieContainer.append(entry.getValue());
-				}
-				result	= cookieContainer.toString();
-			}
-			*/
-
-		}catch(Exception e){e.printStackTrace();}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return cookie;
 	}
 
@@ -187,6 +181,40 @@ public class Requester {
     }
 
 
+    public DataResponse getForiengMovies() {
+        RestClient restClient = new RestClient();
+        String url = getForeingUrl();
+        ApiResponse response = restClient.doGet(url);
+
+        RutrackerFeedParcer rutrackerFeedParcer=new RutrackerFeedParcer();
+        DataResponse dataResponse = null;
+        try {
+            List<RutrackerFeedParcer.Entry> parse = rutrackerFeedParcer.parse(response.getInputSream());
+            dataResponse=new DataResponse(parse);
+        } catch (IOException | XmlPullParserException e) {
+            Log.e(TAG, "EXCEPTION", e);
+        }
+        return dataResponse;
+    }
+
+    public DataResponse getSeriesMovies() {
+        RestClient restClient = new RestClient();
+        String url = getSeriesUrl();
+        ApiResponse response = restClient.doGet(url);
+
+        RutrackerFeedParcer rutrackerFeedParcer=new RutrackerFeedParcer();
+        DataResponse dataResponse = null;
+        try {
+            List<RutrackerFeedParcer.Entry> parse = rutrackerFeedParcer.parse(response.getInputSream());
+            dataResponse=new DataResponse(parse);
+        } catch (IOException | XmlPullParserException e) {
+            Log.e(TAG, "EXCEPTION", e);
+        }
+        return dataResponse;
+    }
+
+
+
     private static JSONObject convertInputStreamToJSONObject(InputStream inputStream)
             throws JSONException {
         BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
@@ -230,43 +258,13 @@ public class Requester {
         return BASE_TORRENT_URL + keyViewTopic;
     }
 
-    private String getArticlesUrl() {
-        return SERVER + "articles.json";
+    private String getForeingUrl() {
+        return SERVER + DEFAULT_FORIENG_URL;
+    }
+    private String getSeriesUrl() {
+        return SERVER + DEFAULT_SERIES_URL;
     }
 
-    private String putArticleUrl() {
-        return SERVER + "articles.json";
-    }
-
-    private String editArticleUrl(long id) {
-        return SERVER + String.format("articles/%d.json", id);
-    }
-
-    private String deleteArticleUrl(long id) {
-        return SERVER + String.format("articles/%d.json", id);
-    }
-
-    private String addImageUrl(long id) {
-        return SERVER + String.format("articles/%d/photos.json", id);
-    }
-
-    private String formatArrayCondition(String field, ArrayList<Long> ids) {
-        StringBuilder result = new StringBuilder();
-
-        result.append(field);
-        result.append(" in (");
-
-        for (int i = 0; i < ids.size(); i++) {
-            if (i > 0) {
-                result.append(", ");
-            }
-            result.append(ids.get(i).toString());
-        }
-
-        result.append(" ) ");
-
-        return result.toString();
-    }
 
     private <T> T deserialize(Gson gson, ApiResponse response, Class<T> classOfT) {
 
