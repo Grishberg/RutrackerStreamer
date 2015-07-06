@@ -97,9 +97,7 @@ public class Requester {
 			PopcornApplication.setCookie( response.cookies() );
 
 			String body = response.body();
-			if(body.contains("cap_sid")){
-				return parseCap (body);
-			}
+
 			// get cap if exists
 			if(!TextUtils.isEmpty(cap)){
 				response = Jsoup.connect("http://login.rutracker.org/forum/login.php")
@@ -112,7 +110,11 @@ public class Requester {
 						.cookies(response.cookies())
 						.method(Connection.Method.POST)
 						.execute();
+
 			} else {
+                if(body.contains("cap_sid")){
+                    return parseCap (body);
+                }
 				response = Jsoup.connect("http://login.rutracker.org/forum/login.php")
 						.referrer("http://rutracker.org/forum/index.php")
 						.data("login_username", login)
@@ -121,6 +123,7 @@ public class Requester {
 						.cookies(response.cookies())
 						.method(Connection.Method.POST)
 						.execute();
+
 			}
 			cookie	= response.cookies();
             response    = Jsoup.connect("http://rutracker.org/").cookies(response.cookies()).execute();
@@ -144,7 +147,7 @@ public class Requester {
 	public DataLoginResponse getAuth(DataAuthRequest data){
 
 		DataLoginResponse response = auth(data.getLogin(), data.getPassword()
-				, data.getCap(), data.getCapSid(), data.getCapSid());
+				, data.getCap(), data.getCapSid(), data.getCapName());
 
 		return response;
 

@@ -23,6 +23,6 @@
 			<solid android:color="#33ffffff" />
 		</shape>
 	</item>
-	<item android:drawable="@drawable/ic_logo"/>
+	<item android:drawable="@mipmap/ic_launcher"/>
 
 </layer-list>

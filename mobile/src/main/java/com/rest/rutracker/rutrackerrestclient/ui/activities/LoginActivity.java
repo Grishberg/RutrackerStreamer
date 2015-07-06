@@ -89,6 +89,8 @@ public class LoginActivity extends AppCompatActivity
 								onCapture(response);
 								break;
 							case Requester.AUTH_STATUS_ERR:
+								mCapPanel.setVisibility(View.GONE);
+								mIsCap	= false;
 								showMessage("Неверный логин или пароль");
 								enableFields();
 								break;
@@ -103,7 +105,7 @@ public class LoginActivity extends AppCompatActivity
 	private void onCapture(DataLoginResponse response){
 		mIsCap		= true;
 		mCapName	= response.getCapName();
-		mCapSid		= response.getCapName();
+		mCapSid		= response.getCapSid();
 
 		enableFields();
 		Picasso.with(this).load(response.getCapUrl()).resize(150,100).into(mCapImage);

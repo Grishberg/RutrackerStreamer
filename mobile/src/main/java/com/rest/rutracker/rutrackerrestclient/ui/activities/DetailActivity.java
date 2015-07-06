@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -21,7 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -47,35 +49,34 @@ import pct.droid.containers.MediaContainer;
  */
 public class DetailActivity extends AppCompatActivity implements Button.OnClickListener {
 
-    public static final String TORRENT_VIEW_TOPIC_LINK = "VIEW_TOPIC_LINK";
-    private static final int CODE_GET_IMAGE = 1;
+	public static final String TORRENT_VIEW_TOPIC_LINK = "VIEW_TOPIC_LINK";
+	private static final int CODE_GET_IMAGE = 1;
 
-    private static final String BASE_TORRENT_LINK = "http://dl.rutracker.org/forum/dl.php?t=";
+	private static final String BASE_TORRENT_LINK = "http://dl.rutracker.org/forum/dl.php?t=";
 
-    private static final String DEFAULT_TORRENT_NAME = "The best torrent of the world";
-    private static final String DEFAULT_KEY_TORRENT_VIEW_TOPIC = "4869690";
+	private static final String DEFAULT_TORRENT_NAME = "The best torrent of the world";
+	private static final String DEFAULT_KEY_TORRENT_VIEW_TOPIC = "4869690";
 
-    private FloatingActionButton buttonPlay;
-    private ImageView imageFromTorrent;
-	private ProgressBar	mProgress;
+	private FloatingActionButton buttonPlay;
+	private ImageView imageFromTorrent;
 
-    private String keyTorrentViewTopic;
-    private String nameTorrent;
-    private MediaContainer mediaContainer;
-    private InfoContainer infoContainer;
-    private String imageUrl;
+	private String keyTorrentViewTopic;
+	private String nameTorrent;
+	private MediaContainer mediaContainer;
+	private InfoContainer infoContainer;
+	private String imageUrl;
 
-    public final static String EXTRA_INFO = "mInfo";
-    private RecyclerView contentRecyclerView;
-    private TextView nameTextView;
-    private TextView descTextView;
+	public final static String EXTRA_INFO = "mInfo";
+	private RecyclerView contentRecyclerView;
+	private TextView nameTextView;
+	private TextView descTextView;
 
-    public static Intent startActivity(Context context, InfoContainer info) {
-        Intent i = new Intent(context, DetailActivity.class);
-        i.putExtra(EXTRA_INFO, info);
-        context.startActivity(i);
-        return i;
-    }
+	public static Intent startActivity(Context context, InfoContainer info) {
+		Intent i = new Intent(context, DetailActivity.class);
+		i.putExtra(EXTRA_INFO, info);
+		context.startActivity(i);
+		return i;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,18 +90,23 @@ public class DetailActivity extends AppCompatActivity implements Button.OnClickL
 			keyTorrentViewTopic=infoContainer.getTorrentKey();
 			nameTorrent=infoContainer.getTorrentName();
 		}
-		mProgress	= (ProgressBar) findViewById(R.id.detail_progress);
+
 		buttonPlay = (FloatingActionButton) findViewById(R.id.buttonLoadTorrentFile);
 		nameTextView = (TextView) findViewById(R.id.TorrentFileName);
 		descTextView = (TextView) findViewById(R.id.TorrentFileDesc);
 		imageFromTorrent = (ImageView) findViewById(R.id.backdrop);
+
 		getImageAndDesc();
 		buttonPlay.setOnClickListener(this);
 		nameTextView.setText(nameTorrent);
 		descTextView.setText("WAIT PLEASE CONTENT IS LOADING...");
-//		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//		setSupportActionBar(toolbar);
-//		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+		CollapsingToolbarLayout collapsingToolbar =
+				(CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+		collapsingToolbar.setTitle(nameTorrent);
 	}
 
 
@@ -113,9 +119,9 @@ public class DetailActivity extends AppCompatActivity implements Button.OnClickL
 					///
 					imageUrl = ((DescriptionDataResponse) object).getUrlImage();
 					String html = ((DescriptionDataResponse) object).getHtml();
-					descTextView.setText(Html.fromHtml(html));
+					String htmlWithOutdownloadsSection = html.split("Download")[0];
+					descTextView.setText(Html.fromHtml(htmlWithOutdownloadsSection));
 					getImageFromUrlWithPicasso(imageUrl);
-					mProgress.setVisibility(View.GONE);
 					Log.d(imageUrl, imageUrl);
 				}
 			}

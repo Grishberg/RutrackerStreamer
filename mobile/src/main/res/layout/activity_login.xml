@@ -64,13 +64,12 @@
         </LinearLayout>
         <LinearLayout
             android:id="@+id/login_form_cap_panel"
-
+            android:visibility="gone"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/login_form_cap_image"
-                android:src="@drawable/empty_bg"
                 android:layout_width="@dimen/login_form_cap_width"
                 android:layout_height="@dimen/login_form_cap_height"
                 android:scaleType="fitXY"
