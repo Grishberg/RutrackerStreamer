@@ -150,5 +150,6 @@
   <string name="action_sign_in_short">Войти</string>
   <string name="prompt_name">Логин</string>
   <string name="prompt_password">пароль</string>
+  <string name="prompt_cap">капча</string>
 
 </resources>

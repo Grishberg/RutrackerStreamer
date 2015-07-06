@@ -62,6 +62,27 @@
                 android:singleLine="true"/>
 
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/login_form_cap_panel"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/login_form_cap_image"
+                android:src="@drawable/empty_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/login_form_cap_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_cap"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -57,9 +57,9 @@ import static com.rest.rutracker.rutrackerrestclient.data.model.OpenDBHelper.COL
 
 public class Requester {
 
-	private static final int AUTH_STATUS_OK		= 1;
-	private static final int AUTH_STATUS_CAP	= 2;
-	private static final int AUTH_STATUS_ERR	= 3;
+	public static final int AUTH_STATUS_OK		= 1;
+	public static final int AUTH_STATUS_CAP	= 2;
+	public static final int AUTH_STATUS_ERR	= 3;
 
 
     public static final String DEFAULT_MOVIE_URL = "2200.atom";
@@ -87,20 +87,18 @@ public class Requester {
 	private DataLoginResponse auth(String login, String password
 			, String cap, String capSid, String capName){
 		Map<String, String> cookie = null;
-		String result = null;
 		try {
 
 
 			Connection.Response response = Jsoup.connect("http://login.rutracker.org/forum/login.php")
 					.method(Connection.Method.GET)
 					.execute();
+
+			PopcornApplication.setCookie( response.cookies() );
+
 			String body = response.body();
 			if(body.equals("cap_sid")){
-				String capValue ="";
-				String capNameValue ="";
-				String capSidValue ="";
-				String capUrl	= "";
-				return new DataLoginResponse(AUTH_STATUS_CAP,capValue, capSidValue, capNameValue, capUrl);
+				return parseCap (body);
 			}
 			// get cap if exists
 			if(!TextUtils.isEmpty(cap)){
@@ -200,11 +198,13 @@ public class Requester {
 	}
 
 	private DataLoginResponse parseCap(String body){
+		DataLoginResponse response = null;
 		try {
+			/*
 			Document doc = Jsoup.parse(body);
-			Elements elementsPostImage = doc.getElementsByClass("postImg");
-
-			for (Element thisArt : elementsPostImage) {
+			Elements elementsTableLogin = doc.getElementsByClass("borderless bCenter");
+			Elements imageCap	= elementsTableLogin
+			for (Element tr : elementsTableLogin) {
 				String title = thisArt.attr("title");
 				dataResponse = new DescriptionDataResponse(title);
 				Log.d(TAG, "hello");
@@ -214,10 +214,12 @@ public class Requester {
 
 			String html = content.html();
 			dataResponse.setHtml(html);
+			*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		response	= new DataLoginResponse(AUTH_STATUS_CAP, "","","http://static.rutracker.org/captcha/0/1/fa39c15962b9e3034d5238093a46d638.jpg?978539332");
+		return  response;
 	}
 
 	public TorrentFileDataResponse getTorrent(ViewTopicRequest keyViewTopic) {
@@ -229,7 +231,7 @@ public class Requester {
 		header.put("Referer",referer);
 		header.put("header","t:"+ keyViewTopic.getKeyViewTopic());
 
-        ApiResponse response 	= restClient.doPostTorrent(url, header, PopcornApplication.getCookie());
+        ApiResponse response 	= restClient.doPostTorrent(url, null, PopcornApplication.getCookie());
 		byte[] torrent			= response.getAsByteArray();
 
 		TorrentFileDataResponse torrentResponse = new TorrentFileDataResponse(torrent);

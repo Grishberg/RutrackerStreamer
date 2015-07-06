@@ -198,5 +198,6 @@ By using \'POPCORN TIME\' or accessing this site you affirm that you are either 
 	<string name="action_sign_in_short">Sign in</string>
 	<string name="prompt_name">Login</string>
 	<string name="prompt_password">Password</string>
+	<string name="prompt_cap">Capture</string>
 
 </resources>

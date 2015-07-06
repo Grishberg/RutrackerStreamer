@@ -9,13 +9,17 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.rest.rutracker.rutrackerrestclient.data.api.ApiService;
 import com.rest.rutracker.rutrackerrestclient.data.api.ApiServiceHelper;
+import com.rest.rutracker.rutrackerrestclient.data.api.Requester;
 import com.rest.rutracker.rutrackerrestclient.data.api.request.DataAuthRequest;
 import com.rest.rutracker.rutrackerrestclient.data.api.response.DataLoginResponse;
+import com.squareup.picasso.Picasso;
 
 import pct.droid.R;
 
@@ -31,13 +35,14 @@ public class LoginActivity extends AppCompatActivity
 	private Button mSiginButton;
 	private EditText mLoginEditText;
 	private EditText mPasswordEditText;
-	private String		mLogin;
-	private String		mServer;
-	private String		mPassword;
+	private EditText mCapEditText;
+	private LinearLayout mCapPanel;
+	private ImageView	mCapImage;
+	private String		mCapSid;
+	private String		mCapName;
 	private ProgressBar	mProgress;
-	private boolean			mIsBound;
-	private boolean			mIsNeedConnect;
-	private boolean			mIsChangeProfile;
+
+	private boolean			mIsCap;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +54,8 @@ public class LoginActivity extends AppCompatActivity
 		mLoginEditText		= (EditText) findViewById(R.id.login_form_name);
 		mPasswordEditText	= (EditText) findViewById(R.id.login_form_password);
 		mProgress			= (ProgressBar) findViewById(R.id.login_progress);
-
+		mCapPanel			= (LinearLayout) findViewById(R.id.login_form_cap_panel);
+		mCapImage			= (ImageView) findViewById(R.id.login_form_cap_image);
 	}
 
 	@Override
@@ -57,23 +63,50 @@ public class LoginActivity extends AppCompatActivity
 		if(!TextUtils.isEmpty(mLoginEditText.getText().toString()) &&
 				!TextUtils.isEmpty(mPasswordEditText.getText().toString())){
 			disableFields();
-			ApiServiceHelper.getAuth(new DataAuthRequest(mLoginEditText.getText().toString()
-					, mPasswordEditText.getText().toString()), new ResultReceiver(new Handler()) {
+			DataAuthRequest request = null;
+			if(mIsCap){
+				request = new DataAuthRequest(mLoginEditText.getText().toString()
+						, mPasswordEditText.getText().toString(), mCapEditText.getText().toString()
+				, mCapSid, mCapName);
+
+			} else {
+				request = new DataAuthRequest(mLoginEditText.getText().toString()
+						, mPasswordEditText.getText().toString());
+			}
+
+			ApiServiceHelper.getAuth(request, new ResultReceiver(new Handler()) {
 				@Override
 				protected void onReceiveResult(int resultCode, Bundle resultData) {
 					if (!resultData.containsKey(ApiService.ERROR_KEY)) {
 						DataLoginResponse response
 								= (DataLoginResponse) resultData.getSerializable(ApiService.RESPONSE_OBJECT_KEY);
-						if (response.isAuth()) {
-							onFinish();
-						} else {
-							showMessage("Неверный логин или пароль");
-							enableFields();
+						switch(response.authStatus()) {
+							case Requester.AUTH_STATUS_OK:
+								onFinish();
+								break;
+							case Requester.AUTH_STATUS_CAP:
+								onCapture(response);
+								break;
+							case Requester.AUTH_STATUS_ERR:
+								showMessage("Неверный логин или пароль");
+								enableFields();
+								break;
 						}
+
 					}
 				}
 			});
 		}
+	}
+
+	private void onCapture(DataLoginResponse response){
+		mIsCap		= true;
+		mCapName	= response.getCapName();
+		mCapSid		= response.getCapName();
+
+		enableFields();
+		Picasso.with(this).load(response.getCapUrl()).into(mCapImage);
+		mCapPanel.setVisibility(View.VISIBLE);
 	}
 
 	private void disableFields() {
@@ -86,7 +119,7 @@ public class LoginActivity extends AppCompatActivity
 	private void onFinish(){
 
 		Intent intent = new Intent();
-		intent.putExtra(EXTRA_LOGIN, mLogin);
+		intent.putExtra(EXTRA_LOGIN, mLoginEditText.getText().toString());
 
 		setResult(RESULT_OK, intent);
 		finish();
@@ -101,7 +134,7 @@ public class LoginActivity extends AppCompatActivity
 
 	private void showMessage(String msg){
 		//tODO: Toast
-		Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

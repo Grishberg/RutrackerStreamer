@@ -24,7 +24,7 @@ import org.apache.commons.codec.binary.Base64;
 import javax.net.ssl.HttpsURLConnection;
 
 public class RestClient {
-
+    private static final String TAG = "RestClient";
 	public static final String  CONTENT_ENCODING	= "Content-Encoding";
 	private static final String CONTENT_TYPE		= "Content-Type";
 	private static final String MULTIPART_FORM_DATA	= "multipart/form-data";
@@ -99,7 +99,8 @@ public class RestClient {
 			conn.connect();
 
 			int status = conn.getResponseCode();
-
+            String mimeType = conn.getContentType();
+			Log.d(REST_CLIENT, "mime type: " + mimeType);
 			apiResponse	= new ApiResponse(status, conn.getInputStream());
 
 		}catch (Exception e){

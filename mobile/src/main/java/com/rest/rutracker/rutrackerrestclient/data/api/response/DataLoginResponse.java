@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class DataLoginResponse implements Serializable {
 	private int status;
-	private String cap;
+
 	private String capSid;
 	private String capName;
 	private String capUrl;
@@ -19,9 +19,9 @@ public class DataLoginResponse implements Serializable {
 	}
 
 	public DataLoginResponse(int status
-			,String cap,String capSid, String capName, String capUrl){
+			,String capSid, String capName, String capUrl){
 		this.status		= status;
-		this.cap		= cap;
+		this.capUrl		= capUrl;
 		this.capSid		= capSid;
 		this.capName	= capName;
 	}
@@ -30,8 +30,8 @@ public class DataLoginResponse implements Serializable {
 		return status;
 	}
 
-	public String getCap() {
-		return cap;
+	public String getCapUrl() {
+		return capUrl;
 	}
 
 	public String getCapSid() {
