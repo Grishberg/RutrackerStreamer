@@ -57,6 +57,11 @@ import static com.rest.rutracker.rutrackerrestclient.data.model.OpenDBHelper.COL
 
 public class Requester {
 
+	private static final int AUTH_STATUS_OK		= 1;
+	private static final int AUTH_STATUS_CAP	= 2;
+	private static final int AUTH_STATUS_ERR	= 3;
+
+
     public static final String DEFAULT_MOVIE_URL = "2200.atom";
     public static final String DEFAULT_FORIENG_URL = "2093.atom" ;
     public static final String DEFAULT_SERIES_URL = "189.atom";
@@ -79,7 +84,7 @@ public class Requester {
     public Requester() {
     }
 
-	private Map<String,String> auth(String login, String password
+	private DataLoginResponse auth(String login, String password
 			, String cap, String capSid, String capName){
 		Map<String, String> cookie = null;
 		String result = null;
@@ -90,6 +95,13 @@ public class Requester {
 					.method(Connection.Method.GET)
 					.execute();
 			String body = response.body();
+			if(body.equals("cap_sid")){
+				String capValue ="";
+				String capNameValue ="";
+				String capSidValue ="";
+				String capUrl	= "";
+				return new DataLoginResponse(AUTH_STATUS_CAP,capValue, capSidValue, capNameValue, capUrl);
+			}
 			// get cap if exists
 			if(!TextUtils.isEmpty(cap)){
 				response = Jsoup.connect("http://login.rutracker.org/forum/login.php")
@@ -116,7 +128,10 @@ public class Requester {
             String loginString	= "<a href=\"http://rutracker.org/forum/profile.php?mode=viewprofile";
 			body = response.body();
 			if(body.contains(loginString)) {
+				//store cookie
 				cookie	= response.cookies();
+				PopcornApplication.setCookie( cookie );
+				return new DataLoginResponse(AUTH_STATUS_OK);
             }
 
 			Log.d(TAG, "body len="+body.length());
@@ -124,15 +139,15 @@ public class Requester {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return cookie;
+		return new DataLoginResponse(AUTH_STATUS_ERR);
 	}
 
 	public DataLoginResponse getAuth(DataAuthRequest data){
 
-		Map<String, String> cookie	= auth(data.getLogin(), data.getPassword(),"","","");
-		PopcornApplication.setCookie( cookie );
+		DataLoginResponse response = auth(data.getLogin(), data.getPassword()
+				, data.getCap(), data.getCapSid(), data.getCapSid());
 
-		return new DataLoginResponse(cookie != null);
+		return response;
 
 	}
 
@@ -166,6 +181,7 @@ public class Requester {
 		try {
 			Document doc = Jsoup.parse(response.getInputSream(), "windows-1251", BASE_RUTRACKER_URL);
 			Elements elementsPostImage = doc.getElementsByClass("postImg");
+
 			for (Element thisArt : elementsPostImage) {
 				String title = thisArt.attr("title");
 				dataResponse = new DescriptionDataResponse(title);
@@ -183,6 +199,27 @@ public class Requester {
 		return dataResponse;
 	}
 
+	private DataLoginResponse parseCap(String body){
+		try {
+			Document doc = Jsoup.parse(body);
+			Elements elementsPostImage = doc.getElementsByClass("postImg");
+
+			for (Element thisArt : elementsPostImage) {
+				String title = thisArt.attr("title");
+				dataResponse = new DescriptionDataResponse(title);
+				Log.d(TAG, "hello");
+				break;
+			}
+			Element content = doc.getElementsByClass("post_wrap").first();
+
+			String html = content.html();
+			dataResponse.setHtml(html);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	public TorrentFileDataResponse getTorrent(ViewTopicRequest keyViewTopic) {
 
         RestClient restClient 	= new RestClient();
@@ -191,6 +228,7 @@ public class Requester {
 		String referer	= "http://rutracker.org/forum/viewtopic.php?t=" + keyViewTopic.getKeyViewTopic();
 		header.put("Referer",referer);
 		header.put("header","t:"+ keyViewTopic.getKeyViewTopic());
+
         ApiResponse response 	= restClient.doPostTorrent(url, header, PopcornApplication.getCookie());
 		byte[] torrent			= response.getAsByteArray();
 
@@ -311,29 +349,9 @@ public class Requester {
     }
 
 
-    private static class CategoriesContainer {
+    private static class AuthStatus {
         public Val[] categories;
     }
 
-    private static class ResultContainer {
-        public TopicData topicData;
-    }
-
-    private static class ArticlesContainer {
-        public Article[] articles;
-    }
-
-    private static class ArticleContainer {
-        public Article article;
-    }
-
-    private static class PhotoContainer {
-        public Photo photo;
-
-        class Photo {
-            public long id;
-            public String url;
-        }
-    }
 }
 
