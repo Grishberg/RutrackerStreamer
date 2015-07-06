@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -56,6 +57,7 @@ public class DetailActivity extends AppCompatActivity implements Button.OnClickL
 
     private FloatingActionButton buttonPlay;
     private ImageView imageFromTorrent;
+	private ProgressBar	mProgress;
 
     private String keyTorrentViewTopic;
     private String nameTorrent;
@@ -87,7 +89,7 @@ public class DetailActivity extends AppCompatActivity implements Button.OnClickL
 			keyTorrentViewTopic=infoContainer.getTorrentKey();
 			nameTorrent=infoContainer.getTorrentName();
 		}
-
+		mProgress	= (ProgressBar) findViewById(R.id.detail_progress);
 		buttonPlay = (FloatingActionButton) findViewById(R.id.buttonLoadTorrentFile);
 		nameTextView = (TextView) findViewById(R.id.TorrentFileName);
 		descTextView = (TextView) findViewById(R.id.TorrentFileDesc);
@@ -117,6 +119,7 @@ public class DetailActivity extends AppCompatActivity implements Button.OnClickL
 					String html = ((DescriptionDataResponse) object).getHtml();
 					descTextView.setText(Html.fromHtml(html));
 					getImageFromUrlWithPicasso(imageUrl);
+					mProgress.setVisibility(View.GONE);
 					Log.d(imageUrl, imageUrl);
 				}
 			}
