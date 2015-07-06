@@ -71,13 +71,14 @@
                         android:layout_height="wrap_content"
                         android:text="Info"
                         android:id="@+id/TorrentFileName"
-                        android:color="@color/primary_text"
+                        android:color="@color/black_text"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/TorrentFileDesc"
+                        android:color="@color/grey_text"
                         android:text="сыр" />
 
                 </LinearLayout>

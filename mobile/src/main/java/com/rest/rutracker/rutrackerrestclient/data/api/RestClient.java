@@ -73,11 +73,7 @@ public class RestClient {
     public ApiResponse doPostTorrent(String stringUrl,Map<String, String> headers, Map<String, String> cookies) {
         ApiResponse apiResponse = new ApiResponse();
 		HttpURLConnection conn = null;
-		try {
 
-		} catch (Exception e) {
-
-		}
 		try {
 
 			URL obj = new URL(stringUrl);
@@ -194,7 +190,6 @@ public class RestClient {
 
         return apiResponse;
     }
-
 
     public String doUploadFile(String requestURL, File uploadFile1, String fileParameterName) {
         String result = null;

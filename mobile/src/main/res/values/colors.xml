@@ -17,6 +17,8 @@
   -->
 
 <resources>
+    <color name="black_text">#e5000000</color>
+    <color name="grey_text">#22FFFFFF</color>
 
 	<color name="bg">#1F2224</color>
     <color name="bg_dark">#141617</color>
