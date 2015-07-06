@@ -13,7 +13,7 @@
     <ImageView
         android:src="@drawable/empty_bg"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/detail_backdrop_height"/>
+        android:layout_height="150dp"/>
     <!-- Login progress -->
     <ProgressBar
         android:id="@+id/login_progress"
@@ -64,16 +64,16 @@
         </LinearLayout>
         <LinearLayout
             android:id="@+id/login_form_cap_panel"
-            android:visibility="gone"
+
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/login_form_cap_image"
                 android:src="@drawable/empty_bg"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/login_form_cap_width"
                 android:layout_height="@dimen/login_form_cap_height"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 android:layout_gravity="center"
 
                 />

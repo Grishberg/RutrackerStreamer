@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity
 		mCapSid		= response.getCapName();
 
 		enableFields();
-		Picasso.with(this).load(response.getCapUrl()).into(mCapImage);
+		Picasso.with(this).load(response.getCapUrl()).resize(150,100).into(mCapImage);
 		mCapPanel.setVisibility(View.VISIBLE);
 	}
 
