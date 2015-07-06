@@ -98,13 +98,9 @@ public class DetailActivity extends AppCompatActivity implements Button.OnClickL
 		buttonPlay.setOnClickListener(this);
 		nameTextView.setText(nameTorrent);
 		descTextView.setText("WAIT PLEASE CONTENT IS LOADING...");
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-		CollapsingToolbarLayout collapsingToolbar =
-				(CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-		collapsingToolbar.setTitle(nameTorrent);
+//		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//		setSupportActionBar(toolbar);
+//		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 

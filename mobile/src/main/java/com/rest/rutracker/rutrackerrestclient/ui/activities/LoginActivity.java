@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity
 
 		mLoginEditText		= (EditText) findViewById(R.id.login_form_name);
 		mPasswordEditText	= (EditText) findViewById(R.id.login_form_password);
+		mCapEditText		= (EditText) findViewById(R.id.login_form_cap_value);
 		mProgress			= (ProgressBar) findViewById(R.id.login_progress);
 		mCapPanel			= (LinearLayout) findViewById(R.id.login_form_cap_panel);
 		mCapImage			= (ImageView) findViewById(R.id.login_form_cap_image);

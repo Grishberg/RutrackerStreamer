@@ -13,7 +13,7 @@
     <ImageView
         android:src="@drawable/empty_bg"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="@dimen/detail_backdrop_height"/>
     <!-- Login progress -->
     <ProgressBar
         android:id="@+id/login_progress"
@@ -72,7 +72,11 @@
                 android:id="@+id/login_form_cap_image"
                 android:src="@drawable/empty_bg"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="@dimen/login_form_cap_height"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center"
+
+                />
 
             <EditText
                 android:id="@+id/login_form_cap_value"
