@@ -42,6 +42,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -78,7 +79,8 @@ public class Requester {
     public Requester() {
     }
 
-	private Map<String,String> auth(String login, String password){
+	private Map<String,String> auth(String login, String password
+			, String cap, String capSid, String capName){
 		Map<String, String> cookie = null;
 		String result = null;
 		try {
@@ -87,26 +89,36 @@ public class Requester {
 			Connection.Response response = Jsoup.connect("http://login.rutracker.org/forum/login.php")
 					.method(Connection.Method.GET)
 					.execute();
-
-			response = Jsoup.connect("http://login.rutracker.org/forum/login.php")
-					.referrer("http://rutracker.org/forum/index.php")
-					.data("login_username", login)
-					.data("login", login)
-					.data("login_password", password)
-					.cookies(response.cookies())
-					.method(Connection.Method.POST)
-					.execute();
-
+			String body = response.body();
+			// get cap if exists
+			if(!TextUtils.isEmpty(cap)){
+				response = Jsoup.connect("http://login.rutracker.org/forum/login.php")
+						.referrer("http://rutracker.org/forum/index.php")
+						.data("login_username", login)
+						.data("login", login)
+						.data("login_password", password)
+						.data("cap_sid",capSid)
+						.data(capName,cap)
+						.cookies(response.cookies())
+						.method(Connection.Method.POST)
+						.execute();
+			} else {
+				response = Jsoup.connect("http://login.rutracker.org/forum/login.php")
+						.referrer("http://rutracker.org/forum/index.php")
+						.data("login_username", login)
+						.data("login", login)
+						.data("login_password", password)
+						.cookies(response.cookies())
+						.method(Connection.Method.POST)
+						.execute();
+			}
             response    = Jsoup.connect("http://rutracker.org/").cookies(response.cookies()).execute();
-            String body = response.body();
-			if(body.contains("Вы зашли как")){
+            String loginString	= "<a href=\"http://rutracker.org/forum/profile.php?mode=viewprofile";
+			body = response.body();
+			if(body.contains(loginString)) {
 				cookie	= response.cookies();
             }
-//            Document doc = Jsoup.connect("http://rutracker.org/").cookies(response.cookies()).get();
-//            if(doc.outerHtml().contains("Вы зашли как")){
-//				cookie	= response.cookies();
-//            }
-			//String body = doc.outerHtml();
+
 			Log.d(TAG, "body len="+body.length());
 
 		}catch(Exception e){
@@ -117,7 +129,7 @@ public class Requester {
 
 	public DataLoginResponse getAuth(DataAuthRequest data){
 
-		Map<String, String> cookie	= auth(data.getLogin(), data.getPassword());
+		Map<String, String> cookie	= auth(data.getLogin(), data.getPassword(),"","","");
 		PopcornApplication.setCookie( cookie );
 
 		return new DataLoginResponse(cookie != null);
@@ -175,8 +187,11 @@ public class Requester {
 
         RestClient restClient 	= new RestClient();
         String url 				= getTorrentUrl(keyViewTopic.getKeyViewTopic());
-
-        ApiResponse response 	= restClient.doPostTorrent(url, null, PopcornApplication.getCookie());
+		Map<String , String> header	= new HashMap<>();
+		String referer	= "http://rutracker.org/forum/viewtopic.php?t=" + keyViewTopic.getKeyViewTopic();
+		header.put("Referer",referer);
+		header.put("header","t:"+ keyViewTopic.getKeyViewTopic());
+        ApiResponse response 	= restClient.doPostTorrent(url, header, PopcornApplication.getCookie());
 		byte[] torrent			= response.getAsByteArray();
 
 		TorrentFileDataResponse torrentResponse = new TorrentFileDataResponse(torrent);
